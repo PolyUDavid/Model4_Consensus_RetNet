@@ -1,0 +1,25 @@
+{
+  "overall_accuracy": 99.98,
+  "per_class": {
+    "PoW": {"precision": 1.0000, "recall": 1.0000, "f1": 1.0000, "accuracy": 100.00},
+    "PoS": {"precision": 0.9988, "recall": 1.0000, "f1": 0.9994, "accuracy": 99.89},
+    "PBFT": {"precision": 1.0000, "recall": 1.0000, "f1": 1.0000, "accuracy": 100.00},
+    "DPoS": {"precision": 1.0000, "recall": 1.0000, "f1": 1.0000, "accuracy": 100.00},
+    "Hybrid": {"precision": 1.0000, "recall": 0.9989, "f1": 0.9995, "accuracy": 99.89}
+  },
+  "architecture_comparison": {
+    "RetNet": {"test_accuracy": 99.98, "parameters": 5402126, "training_epochs": 26},
+    "MLP": {"test_accuracy": 99.98, "parameters": 70405, "training_epochs": 48},
+    "LSTM": {"test_accuracy": 99.98, "parameters": 205445, "training_epochs": 41},
+    "CNN": {"test_accuracy": 99.09, "parameters": 25605, "training_epochs": 107}
+  },
+  "dataset": {
+    "total_samples": 30000,
+    "train": 21000,
+    "validation": 4500,
+    "test": 4500,
+    "classes": 5,
+    "features": 12,
+    "balance": "20% per class (6000 each)"
+  }
+}

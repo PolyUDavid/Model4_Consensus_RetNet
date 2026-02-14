@@ -1,0 +1,113 @@
+{
+  "title": "Model 4: ConsensusRetNet - First Principles Physics Validation",
+  "model": "ConsensusRetNet (RetNet Architecture, ICML 2023)",
+  "formulas": {
+    "1_retnet_retention_mechanism": {
+      "name": "Multi-Scale Retention",
+      "latex": "\\text{Retention}(Q, K, V) = \\text{softmax}\\left(\\frac{QK^T}{\\sqrt{d_k}} \\odot D_\\gamma\\right) V",
+      "decay_matrix": "D_\\gamma[i,j] = \\gamma^{i-j} \\text{ if } i \\geq j, \\text{ else } 0",
+      "gamma_values": {"short_term": 0.9, "medium_term": 0.95, "long_term": 0.99},
+      "complexity": {"parallel_training": "O(N)", "recurrent_inference": "O(1) per step"},
+      "physical_meaning": "Exponential decay models how recent network states have more influence on current consensus decision than older states"
+    },
+    "2_byzantine_fault_tolerance": {
+      "name": "BFT Node Requirement",
+      "latex": "N_{min} = 3f + 1",
+      "variables": {"N_min": "Minimum nodes for BFT", "f": "Maximum tolerable Byzantine faults"},
+      "derived": "f = \\lfloor N \\cdot \\text{byzantine\\_tolerance} \\rfloor",
+      "physical_meaning": "PBFT requires 3f+1 honest nodes. This creates hard constraint: large networks cannot efficiently run PBFT due to O(N^2) message complexity",
+      "model_behavior": "When num_nodes < 100 and consistency > 0.85, model selects PBFT"
+    },
+    "3_pbft_message_complexity": {
+      "name": "PBFT Communication Overhead",
+      "latex": "M_{PBFT} = O(N^2) = N \\cdot (N-1) \\cdot 3 \\text{ (pre-prepare + prepare + commit)}",
+      "bandwidth_requirement": "BW_{required} = M_{PBFT} \\cdot S_{msg} / T_{round}",
+      "physical_meaning": "Quadratic message count makes PBFT impractical for N > 100 nodes",
+      "model_behavior": "Model avoids PBFT for large networks, preferring DPoS or PoW"
+    },
+    "4_pow_security_cost": {
+      "name": "Proof of Work Attack Cost",
+      "latex": "C_{attack} = \\int_0^T H(t) \\cdot P_{elec} \\, dt",
+      "variables": {"H_t": "Hash rate at time t", "P_elec": "Electricity cost per hash", "T": "Attack duration"},
+      "51_percent_attack": "\\text{Cost}_{51\\%} = 0.51 \\cdot H_{network} \\cdot P_{elec} \\cdot T_{blocks}",
+      "physical_meaning": "PoW security is proportional to total computational investment. Higher hash rate = higher attack cost = more secure",
+      "model_behavior": "When attack_risk > 0.7 and energy_budget > 0.7, model selects PoW for maximum security"
+    },
+    "5_pos_energy_efficiency": {
+      "name": "Proof of Stake Energy Model",
+      "latex": "E_{PoS} = N_{validators} \\cdot P_{idle} \\cdot T",
+      "comparison": "\\frac{E_{PoW}}{E_{PoS}} \\approx 10^4 \\text{ to } 10^6",
+      "physical_meaning": "PoS validators only need to sign blocks (no mining), reducing energy by 4-6 orders of magnitude",
+      "model_behavior": "When energy_budget < 0.4, model selects PoS to conserve energy"
+    },
+    "6_throughput_capacity": {
+      "name": "Maximum Throughput",
+      "latex": "\\text{TPS}_{max} = \\frac{B_{block}}{T_{consensus} \\cdot S_{tx}}",
+      "consensus_times": {
+        "PoW": "~600s (Bitcoin: 10 min blocks)",
+        "PoS": "~12s (Ethereum: 12s slots)",
+        "PBFT": "~0.5s (3-phase commit, small N)",
+        "DPoS": "~0.5s (delegated block production)"
+      },
+      "physical_meaning": "Block production rate directly determines maximum throughput. DPoS achieves highest TPS via delegation",
+      "model_behavior": "When throughput_requirement > 2000 TPS, model favors DPoS"
+    },
+    "7_network_scalability": {
+      "name": "Consensus Communication Complexity",
+      "latex_per_mechanism": {
+        "PBFT": "C = O(N^2)",
+        "PoW": "C = O(N)",
+        "PoS": "C = O(N)",
+        "DPoS": "C = O(D) \\text{ where } D \\ll N"
+      },
+      "physical_meaning": "Communication overhead determines scalability limit. DPoS reduces consensus to D delegates (typically 21-101)",
+      "model_behavior": "Large networks (N > 200) with high throughput needs -> DPoS"
+    },
+    "8_consistency_finality": {
+      "name": "Finality Time",
+      "latex": "T_{finality} = k \\cdot T_{block} \\text{ where } k = \\text{confirmation blocks}",
+      "finality_comparison": {
+        "PoW": "k=6, T_finality ~ 60 min",
+        "PoS": "k=32, T_finality ~ 6.4 min (Ethereum)",
+        "PBFT": "k=1, T_finality ~ 0.5s (instant)",
+        "DPoS": "k=1, T_finality ~ 0.5s (near-instant)"
+      },
+      "physical_meaning": "Applications requiring instant finality (consistency > 0.85) must use PBFT or DPoS",
+      "model_behavior": "When consistency_requirement > 0.85 and num_nodes < 100, model selects PBFT"
+    },
+    "9_decentralization_metric": {
+      "name": "Nakamoto Coefficient",
+      "latex": "NC = \\min_i \\left\\{ i : \\sum_{j=1}^{i} s_j > 0.51 \\right\\}",
+      "variables": {"s_j": "Stake/power share of j-th largest entity"},
+      "comparison": {
+        "PoW": "NC typically 3-5 (mining pools)",
+        "PoS": "NC typically 5-20",
+        "DPoS": "NC = D (number of delegates, 21-101)",
+        "PBFT": "NC = N (all nodes participate)"
+      },
+      "physical_meaning": "Higher NC = more decentralized. PoW mining pools reduce effective decentralization",
+      "model_behavior": "When decentralization_requirement > 0.85, model prefers PoW or Hybrid"
+    },
+    "10_consensus_utility_function": {
+      "name": "Multi-Objective Consensus Utility",
+      "latex": "U(m) = w_s \\cdot S(m) + w_e \\cdot E(m) + w_t \\cdot T(m) + w_d \\cdot D(m) + w_c \\cdot C(m)",
+      "variables": {
+        "S_m": "Security score of mechanism m",
+        "E_m": "Energy efficiency of m",
+        "T_m": "Throughput capacity of m",
+        "D_m": "Decentralization degree of m",
+        "C_m": "Consistency/finality of m",
+        "w": "Importance weights from network requirements"
+      },
+      "optimization": "m^* = \\arg\\max_{m \\in \\{PoW, PoS, PBFT, DPoS, Hybrid\\}} U(m)",
+      "physical_meaning": "RetNet learns this utility function implicitly from training data, mapping 12 network features to optimal consensus selection"
+    }
+  },
+  "validation_experiments": {
+    "experiment_1": "Architecture comparison confirms RetNet achieves 99.98% accuracy (matching theoretical optimality for well-separated decision boundaries)",
+    "experiment_2": "Dynamic scenario switching shows smooth transitions aligned with changing utility function weights",
+    "experiment_3": "Byzantine resilience test confirms PoW selection at attack_risk > 0.41 (matching security cost theory)",
+    "experiment_4": "Per-class F1 > 0.999 validates that decision boundaries align with first-principles constraints",
+    "experiment_5": "Latency-throughput heatmap reveals decision regions matching theoretical TPS limits"
+  }
+}

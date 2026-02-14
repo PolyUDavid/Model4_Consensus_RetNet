@@ -1,0 +1,75 @@
+{
+  "model_name": "ConsensusRetNet",
+  "base_paper": "Retentive Network: A Successor to Transformer for Large Language Models",
+  "venue": "ICML 2023",
+  "authors": "Yutao Sun, Li Dong, et al.",
+  "task": "Multi-class classification for consensus mechanism selection",
+  "input_dim": 12,
+  "output_dim": 5,
+  "d_model": 384,
+  "num_layers": 3,
+  "num_heads": 3,
+  "d_ff": 1536,
+  "dropout": 0.1,
+  "retention_gammas": [0.9, 0.95, 0.99],
+  "total_parameters": 5402126,
+  "parameter_breakdown": {
+    "input_projection": {"shape": "12 -> 384", "params": 5160},
+    "positional_embedding": {"shape": "1 x 1 x 384", "params": 384},
+    "retnet_blocks": {
+      "per_block": {
+        "multi_scale_retention": {
+          "q_proj": "384 -> 384",
+          "k_proj": "384 -> 384",
+          "v_proj": "384 -> 384",
+          "out_proj": "384 -> 384",
+          "group_norm": 384
+        },
+        "feed_forward": {
+          "linear1": "384 -> 1536",
+          "linear2": "1536 -> 384"
+        },
+        "layer_norms": "2 x 384"
+      },
+      "total_blocks": 3
+    },
+    "classification_head": {
+      "fc1": "384 -> 192",
+      "fc2": "192 -> 5"
+    }
+  },
+  "input_features": [
+    {"name": "num_nodes", "range": [10, 1000], "description": "Number of network nodes"},
+    {"name": "connectivity", "range": [0.6, 0.95], "description": "Network connectivity ratio"},
+    {"name": "latency_requirement_sec", "range": [0.5, 60], "description": "Maximum tolerable latency (seconds)"},
+    {"name": "throughput_requirement_tps", "range": [5, 10000], "description": "Required throughput (TPS)"},
+    {"name": "byzantine_tolerance", "range": [0, 0.33], "description": "Byzantine fault tolerance ratio"},
+    {"name": "security_priority", "range": [0.6, 1.0], "description": "Security importance"},
+    {"name": "energy_budget", "range": [0.1, 1.0], "description": "Energy budget (normalized)"},
+    {"name": "bandwidth_mbps", "range": [100, 10000], "description": "Network bandwidth (Mbps)"},
+    {"name": "consistency_requirement", "range": [0.5, 1.0], "description": "Consistency strength requirement"},
+    {"name": "decentralization_requirement", "range": [0.3, 1.0], "description": "Decentralization need"},
+    {"name": "network_load", "range": [0.1, 0.9], "description": "Current network utilization"},
+    {"name": "attack_risk", "range": [0, 1.0], "description": "Perceived attack risk"}
+  ],
+  "output_classes": [
+    {"id": 0, "name": "PoW", "full_name": "Proof of Work", "characteristics": "High security, high energy, high decentralization, low throughput"},
+    {"id": 1, "name": "PoS", "full_name": "Proof of Stake", "characteristics": "Medium security, low energy, good throughput"},
+    {"id": 2, "name": "PBFT", "full_name": "Practical Byzantine Fault Tolerance", "characteristics": "Small networks, low latency, strong consistency"},
+    {"id": 3, "name": "DPoS", "full_name": "Delegated Proof of Stake", "characteristics": "Large networks, high throughput, moderate decentralization"},
+    {"id": 4, "name": "Hybrid", "full_name": "Hybrid Consensus", "characteristics": "Balanced requirements across metrics"}
+  ],
+  "training": {
+    "device": "MPS (Apple Silicon GPU)",
+    "optimizer": "AdamW",
+    "base_lr": 0.0006,
+    "weight_decay": 0.01,
+    "batch_size": 128,
+    "max_epochs": 100,
+    "actual_epochs": 26,
+    "early_stopping_patience": 20,
+    "loss": "CrossEntropyLoss + LabelSmoothing(0.1)",
+    "lr_schedule": "3-stage: Warmup(10) + Stable + CosineDecay",
+    "gradient_clipping": 1.0
+  }
+}

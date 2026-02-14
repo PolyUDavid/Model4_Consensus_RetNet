@@ -1,0 +1,84 @@
+{
+  "scenarios": [
+    {
+      "name": "Normal V2X Network",
+      "description": "Stable vehicular network with moderate traffic, balanced requirements",
+      "expected_consensus": "Hybrid",
+      "predicted_consensus": "Hybrid",
+      "confidence": 0.928,
+      "network_state": {
+        "num_nodes": 150, "connectivity": 0.72, "latency_requirement_sec": 12.0,
+        "throughput_requirement_tps": 1200, "byzantine_tolerance": 0.17,
+        "security_priority": 0.80, "energy_budget": 0.60, "bandwidth_mbps": 1500,
+        "consistency_requirement": 0.75, "decentralization_requirement": 0.70,
+        "network_load": 0.45, "attack_risk": 0.55
+      },
+      "reasoning": "Balanced network conditions favor Hybrid consensus for adaptive operation"
+    },
+    {
+      "name": "Byzantine Attack",
+      "description": "High-risk attack scenario requiring maximum security",
+      "expected_consensus": "PoW",
+      "predicted_consensus": "PoW",
+      "confidence": 0.920,
+      "network_state": {
+        "num_nodes": 700, "connectivity": 0.82, "latency_requirement_sec": 45.0,
+        "throughput_requirement_tps": 30, "byzantine_tolerance": 0.28,
+        "security_priority": 0.94, "energy_budget": 0.88, "bandwidth_mbps": 500,
+        "consistency_requirement": 0.90, "decentralization_requirement": 0.92,
+        "network_load": 0.30, "attack_risk": 0.85
+      },
+      "reasoning": "High attack risk + high energy budget + high decentralization -> PoW provides strongest 51% attack resistance"
+    },
+    {
+      "name": "Emergency Scale-up",
+      "description": "Mass event with ultra-high throughput demand",
+      "expected_consensus": "DPoS",
+      "predicted_consensus": "DPoS",
+      "confidence": 0.930,
+      "network_state": {
+        "num_nodes": 400, "connectivity": 0.72, "latency_requirement_sec": 7.0,
+        "throughput_requirement_tps": 7700, "byzantine_tolerance": 0.12,
+        "security_priority": 0.72, "energy_budget": 0.30, "bandwidth_mbps": 5500,
+        "consistency_requirement": 0.65, "decentralization_requirement": 0.62,
+        "network_load": 0.70, "attack_risk": 0.40
+      },
+      "reasoning": "Massive throughput requirement (7700 TPS) + large network -> DPoS with delegated block production"
+    },
+    {
+      "name": "Energy-Constrained",
+      "description": "Low power budget requires energy-efficient consensus",
+      "expected_consensus": "PoS",
+      "predicted_consensus": "PoS",
+      "confidence": 0.92,
+      "network_state": {
+        "num_nodes": 200, "connectivity": 0.75, "latency_requirement_sec": 20.0,
+        "throughput_requirement_tps": 60, "byzantine_tolerance": 0.18,
+        "security_priority": 0.80, "energy_budget": 0.25, "bandwidth_mbps": 800,
+        "consistency_requirement": 0.75, "decentralization_requirement": 0.75,
+        "network_load": 0.45, "attack_risk": 0.60
+      },
+      "reasoning": "Low energy budget (0.25) eliminates PoW; PoS provides good security with minimal energy"
+    },
+    {
+      "name": "Small Network / Low Latency",
+      "description": "Small RSU cluster needing instant finality",
+      "expected_consensus": "PBFT",
+      "predicted_consensus": "PBFT",
+      "confidence": 0.82,
+      "network_state": {
+        "num_nodes": 40, "connectivity": 0.90, "latency_requirement_sec": 2.0,
+        "throughput_requirement_tps": 3000, "byzantine_tolerance": 0.22,
+        "security_priority": 0.85, "energy_budget": 0.50, "bandwidth_mbps": 2500,
+        "consistency_requirement": 0.92, "decentralization_requirement": 0.45,
+        "network_load": 0.55, "attack_risk": 0.50
+      },
+      "reasoning": "Small network (40 nodes) + ultra-low latency (2s) + strong consistency (0.92) -> PBFT with O(N²) is feasible"
+    }
+  ],
+  "byzantine_resilience": {
+    "transition_point": 0.41,
+    "transition": "Hybrid -> PoW",
+    "description": "At attack_risk > 0.41, model switches from Hybrid to PoW for maximum security"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "model": "ConsensusRetNet",
+  "architecture": "RetNet (ICML 2023)",
+  "parameters": 5402126,
+  "test_accuracy": 99.97777938842773,
+  "per_class_f1": {
+    "PoW": 1.0,
+    "PoS": 0.9994242947610823,
+    "PBFT": 1.0,
+    "DPoS": 1.0,
+    "Hybrid": 0.9994609164420485
+  },
+  "architecture_comparison": {
+    "RetNet": {
+      "acc": 99.97777938842773,
+      "params": 5402126
+    },
+    "MLP": {
+      "acc": 99.97777938842773,
+      "params": 70405
+    },
+    "LSTM": {
+      "acc": 99.97777938842773,
+      "params": 205445
+    },
+    "CNN": {
+      "acc": 99.08888936042786,
+      "params": 25605
+    }
+  },
+  "total_time_seconds": 155.9495038986206
+}

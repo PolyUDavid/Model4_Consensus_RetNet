@@ -1,0 +1,3711 @@
+{
+  "_metadata": {
+    "generated_at": "2026-02-14T09:37:22.257466+00:00",
+    "api_url": "http://localhost:8000",
+    "model_info": {
+      "model_name": "ConsensusRetNet",
+      "architecture": "RetNet (Retentive Network - ICML 2023)",
+      "task": "Multi-class classification (5 consensus mechanisms)",
+      "parameters": 5402126,
+      "input_features": [
+        "num_nodes",
+        "connectivity",
+        "latency_requirement_sec",
+        "throughput_requirement_tps",
+        "byzantine_tolerance",
+        "security_priority",
+        "energy_budget",
+        "bandwidth_mbps",
+        "consistency_requirement",
+        "decentralization_requirement",
+        "network_load",
+        "attack_risk"
+      ],
+      "output_classes": [
+        "PoW",
+        "PoS",
+        "PBFT",
+        "DPoS",
+        "Hybrid"
+      ],
+      "class_descriptions": {
+        "PoW": "Proof of Work",
+        "PoS": "Proof of Stake",
+        "PBFT": "Practical Byzantine Fault Tolerance",
+        "DPoS": "Delegated Proof of Stake",
+        "Hybrid": "Hybrid Consensus"
+      },
+      "d_model": 384,
+      "num_layers": 3,
+      "num_heads": 3,
+      "retention_gammas": [
+        0.9,
+        0.95,
+        0.99
+      ],
+      "checkpoint": {
+        "epoch": 6,
+        "val_accuracy": 99.97777777777777,
+        "val_loss": 0.391255770292547,
+        "class_accuracy": {
+          "PoW": 100.0,
+          "PoS": 100.0,
+          "PBFT": 100.0,
+          "DPoS": 100.0,
+          "Hybrid": 99.89035087719299
+        }
+      }
+    },
+    "api_health": {
+      "status": "healthy",
+      "model_loaded": true,
+      "device": "cpu",
+      "uptime_seconds": 12701.1,
+      "requests_served": 3625
+    },
+    "total_experiment_time_seconds": 0.4,
+    "data_source": "Real ConsensusRetNet API (best_consensus.pth)",
+    "verified": true,
+    "author": "NOK KO"
+  },
+  "case_studies": [
+    {
+      "case_id": "Case_1",
+      "name": "Normal V2X Commuter Network",
+      "description": "Stable vehicular network during regular commute hours. Moderate traffic density, balanced network requirements. No specific security threats detected.",
+      "location": "Urban Highway Corridor, Region A",
+      "expected_consensus": "Hybrid",
+      "api_response": {
+        "success": true,
+        "prediction": {
+          "predicted_consensus": "Hybrid",
+          "full_name": "Hybrid Consensus",
+          "confidence": 0.927597,
+          "probabilities": {
+            "PoW": 0.020907,
+            "PoS": 0.018405,
+            "PBFT": 0.015416,
+            "DPoS": 0.017676,
+            "Hybrid": 0.927597
+          },
+          "input_features": {
+            "num_nodes": 150.0,
+            "connectivity": 0.72,
+            "latency_requirement_sec": 12.0,
+            "throughput_requirement_tps": 1200.0,
+            "byzantine_tolerance": 0.17,
+            "security_priority": 0.8,
+            "energy_budget": 0.6,
+            "bandwidth_mbps": 1500.0,
+            "consistency_requirement": 0.75,
+            "decentralization_requirement": 0.7,
+            "network_load": 0.45,
+            "attack_risk": 0.55
+          }
+        },
+        "metadata": {
+          "inference_time_ms": 5.28,
+          "model": "ConsensusRetNet",
+          "device": "cpu"
+        },
+        "client_latency_ms": 7.221
+      },
+      "latency_statistics": {
+        "num_runs": 10,
+        "mean_ms": 2.526,
+        "std_ms": 1.574,
+        "min_ms": 1.775,
+        "max_ms": 7.221,
+        "p50_ms": 1.98,
+        "p95_ms": 5.023,
+        "all_latencies_ms": [
+          7.221,
+          2.337,
+          1.888,
+          2.17,
+          2.173,
+          1.999,
+          1.775,
+          1.961,
+          1.95,
+          1.787
+        ]
+      },
+      "correct": true
+    },
+    {
+      "case_id": "Case_2",
+      "name": "Byzantine Attack Scenario",
+      "description": "Security monitoring detects anomalous node behavior \u2014 ~28% of nodes sending forged location data. Attack risk surges to 85%. Network operators prioritize maximum security over throughput and latency.",
+      "location": "Metropolitan Expressway, Region B",
+      "expected_consensus": "PoW",
+      "api_response": {
+        "success": true,
+        "prediction": {
+          "predicted_consensus": "PoW",
+          "full_name": "Proof of Work",
+          "confidence": 0.920117,
+          "probabilities": {
+            "PoW": 0.920117,
+            "PoS": 0.020219,
+            "PBFT": 0.020369,
+            "DPoS": 0.022219,
+            "Hybrid": 0.017076
+          },
+          "input_features": {
+            "num_nodes": 700.0,
+            "connectivity": 0.82,
+            "latency_requirement_sec": 45.0,
+            "throughput_requirement_tps": 30.0,
+            "byzantine_tolerance": 0.28,
+            "security_priority": 0.94,
+            "energy_budget": 0.88,
+            "bandwidth_mbps": 500.0,
+            "consistency_requirement": 0.9,
+            "decentralization_requirement": 0.92,
+            "network_load": 0.3,
+            "attack_risk": 0.85
+          }
+        },
+        "metadata": {
+          "inference_time_ms": 0.87,
+          "model": "ConsensusRetNet",
+          "device": "cpu"
+        },
+        "client_latency_ms": 2.068
+      },
+      "latency_statistics": {
+        "num_runs": 10,
+        "mean_ms": 2.066,
+        "std_ms": 0.233,
+        "min_ms": 1.754,
+        "max_ms": 2.529,
+        "p50_ms": 2.026,
+        "p95_ms": 2.479,
+        "all_latencies_ms": [
+          2.068,
+          2.529,
+          1.867,
+          1.754,
+          2.056,
+          2.151,
+          1.849,
+          1.976,
+          1.996,
+          2.417
+        ]
+      },
+      "correct": true
+    },
+    {
+      "case_id": "Case_3",
+      "name": "Mass Event Emergency Scale-up",
+      "description": "Post-event dispersal at a major stadium. 400+ autonomous ride-share vehicles activated simultaneously. Transaction rate surges to 7700 TPS (payments, routing, scheduling). Pure throughput scaling problem.",
+      "location": "Sports District, Region C",
+      "expected_consensus": "DPoS",
+      "api_response": {
+        "success": true,
+        "prediction": {
+          "predicted_consensus": "DPoS",
+          "full_name": "Delegated Proof of Stake",
+          "confidence": 0.929548,
+          "probabilities": {
+            "PoW": 0.015468,
+            "PoS": 0.018009,
+            "PBFT": 0.018966,
+            "DPoS": 0.929548,
+            "Hybrid": 0.018009
+          },
+          "input_features": {
+            "num_nodes": 400.0,
+            "connectivity": 0.72,
+            "latency_requirement_sec": 7.0,
+            "throughput_requirement_tps": 7700.0,
+            "byzantine_tolerance": 0.12,
+            "security_priority": 0.72,
+            "energy_budget": 0.3,
+            "bandwidth_mbps": 5500.0,
+            "consistency_requirement": 0.65,
+            "decentralization_requirement": 0.62,
+            "network_load": 0.7,
+            "attack_risk": 0.4
+          }
+        },
+        "metadata": {
+          "inference_time_ms": 0.87,
+          "model": "ConsensusRetNet",
+          "device": "cpu"
+        },
+        "client_latency_ms": 2.285
+      },
+      "latency_statistics": {
+        "num_runs": 10,
+        "mean_ms": 1.947,
+        "std_ms": 0.174,
+        "min_ms": 1.668,
+        "max_ms": 2.285,
+        "p50_ms": 1.95,
+        "p95_ms": 2.202,
+        "all_latencies_ms": [
+          2.285,
+          1.887,
+          2.101,
+          2.043,
+          1.973,
+          1.89,
+          2.004,
+          1.926,
+          1.689,
+          1.668
+        ]
+      },
+      "correct": true
+    },
+    {
+      "case_id": "Case_4",
+      "name": "Energy-Constrained Remote Network",
+      "description": "Remote mountain highway with 200 solar-powered RSU nodes. Energy budget only 25% of nominal capacity. Low traffic volume (60 TPS) but blockchain recording must remain uninterrupted.",
+      "location": "Remote Highway, Region D",
+      "expected_consensus": "PoS",
+      "api_response": {
+        "success": true,
+        "prediction": {
+          "predicted_consensus": "PoS",
+          "full_name": "Proof of Stake",
+          "confidence": 0.925488,
+          "probabilities": {
+            "PoW": 0.018591,
+            "PoS": 0.925488,
+            "PBFT": 0.019349,
+            "DPoS": 0.018383,
+            "Hybrid": 0.018188
+          },
+          "input_features": {
+            "num_nodes": 200.0,
+            "connectivity": 0.75,
+            "latency_requirement_sec": 20.0,
+            "throughput_requirement_tps": 60.0,
+            "byzantine_tolerance": 0.18,
+            "security_priority": 0.8,
+            "energy_budget": 0.25,
+            "bandwidth_mbps": 800.0,
+            "consistency_requirement": 0.75,
+            "decentralization_requirement": 0.75,
+            "network_load": 0.45,
+            "attack_risk": 0.6
+          }
+        },
+        "metadata": {
+          "inference_time_ms": 0.82,
+          "model": "ConsensusRetNet",
+          "device": "cpu"
+        },
+        "client_latency_ms": 2.067
+      },
+      "latency_statistics": {
+        "num_runs": 10,
+        "mean_ms": 1.904,
+        "std_ms": 0.106,
+        "min_ms": 1.721,
+        "max_ms": 2.067,
+        "p50_ms": 1.926,
+        "p95_ms": 2.038,
+        "all_latencies_ms": [
+          2.067,
+          1.912,
+          1.946,
+          1.777,
+          2.003,
+          1.774,
+          1.721,
+          1.926,
+          1.927,
+          1.988
+        ]
+      },
+      "correct": true
+    },
+    {
+      "case_id": "Case_5",
+      "name": "Small Network Instant Finality",
+      "description": "Enclosed smart parking facility with 40 RSU nodes managing 300 parking spots. Each parking command requires absolute finality within 2 seconds (vehicle already in motion). High connectivity (90%), strong consistency requirement (92%).",
+      "location": "Smart Parking Facility, Region E",
+      "expected_consensus": "PBFT",
+      "api_response": {
+        "success": true,
+        "prediction": {
+          "predicted_consensus": "PBFT",
+          "full_name": "Practical Byzantine Fault Tolerance",
+          "confidence": 0.93319,
+          "probabilities": {
+            "PoW": 0.016279,
+            "PoS": 0.016453,
+            "PBFT": 0.93319,
+            "DPoS": 0.016194,
+            "Hybrid": 0.017884
+          },
+          "input_features": {
+            "num_nodes": 40.0,
+            "connectivity": 0.9,
+            "latency_requirement_sec": 2.0,
+            "throughput_requirement_tps": 3000.0,
+            "byzantine_tolerance": 0.22,
+            "security_priority": 0.85,
+            "energy_budget": 0.5,
+            "bandwidth_mbps": 2500.0,
+            "consistency_requirement": 0.92,
+            "decentralization_requirement": 0.45,
+            "network_load": 0.55,
+            "attack_risk": 0.5
+          }
+        },
+        "metadata": {
+          "inference_time_ms": 0.83,
+          "model": "ConsensusRetNet",
+          "device": "cpu"
+        },
+        "client_latency_ms": 2.208
+      },
+      "latency_statistics": {
+        "num_runs": 10,
+        "mean_ms": 1.995,
+        "std_ms": 0.299,
+        "min_ms": 1.744,
+        "max_ms": 2.776,
+        "p50_ms": 1.892,
+        "p95_ms": 2.52,
+        "all_latencies_ms": [
+          2.208,
+          1.811,
+          2.776,
+          1.998,
+          1.757,
+          1.775,
+          1.744,
+          1.843,
+          2.097,
+          1.942
+        ]
+      },
+      "correct": true
+    }
+  ],
+  "byzantine_resilience": {
+    "sweep_data": [
+      {
+        "attack_risk": 0.0,
+        "predicted": "Hybrid",
+        "confidence": 0.899028,
+        "probabilities": {
+          "PoW": 0.024288,
+          "PoS": 0.022443,
+          "PBFT": 0.018919,
+          "DPoS": 0.035321,
+          "Hybrid": 0.899028
+        },
+        "inference_ms": 1.1
+      },
+      {
+        "attack_risk": 0.0204,
+        "predicted": "Hybrid",
+        "confidence": 0.910123,
+        "probabilities": {
+          "PoW": 0.022857,
+          "PoS": 0.021523,
+          "PBFT": 0.017841,
+          "DPoS": 0.027656,
+          "Hybrid": 0.910123
+        },
+        "inference_ms": 0.93
+      },
+      {
+        "attack_risk": 0.0408,
+        "predicted": "Hybrid",
+        "confidence": 0.915178,
+        "probabilities": {
+          "PoW": 0.022078,
+          "PoS": 0.021134,
+          "PBFT": 0.017347,
+          "DPoS": 0.024264,
+          "Hybrid": 0.915178
+        },
+        "inference_ms": 0.86
+      },
+      {
+        "attack_risk": 0.0612,
+        "predicted": "Hybrid",
+        "confidence": 0.918057,
+        "probabilities": {
+          "PoW": 0.021583,
+          "PoS": 0.020911,
+          "PBFT": 0.017036,
+          "DPoS": 0.022413,
+          "Hybrid": 0.918057
+        },
+        "inference_ms": 0.83
+      },
+      {
+        "attack_risk": 0.0816,
+        "predicted": "Hybrid",
+        "confidence": 0.919961,
+        "probabilities": {
+          "PoW": 0.021243,
+          "PoS": 0.020749,
+          "PBFT": 0.016789,
+          "DPoS": 0.021258,
+          "Hybrid": 0.919961
+        },
+        "inference_ms": 0.81
+      },
+      {
+        "attack_risk": 0.102,
+        "predicted": "Hybrid",
+        "confidence": 0.921323,
+        "probabilities": {
+          "PoW": 0.021007,
+          "PoS": 0.020617,
+          "PBFT": 0.016566,
+          "DPoS": 0.020486,
+          "Hybrid": 0.921323
+        },
+        "inference_ms": 0.86
+      },
+      {
+        "attack_risk": 0.1224,
+        "predicted": "Hybrid",
+        "confidence": 0.922397,
+        "probabilities": {
+          "PoW": 0.020844,
+          "PoS": 0.020494,
+          "PBFT": 0.016357,
+          "DPoS": 0.019908,
+          "Hybrid": 0.922397
+        },
+        "inference_ms": 0.81
+      },
+      {
+        "attack_risk": 0.1429,
+        "predicted": "Hybrid",
+        "confidence": 0.923247,
+        "probabilities": {
+          "PoW": 0.020747,
+          "PoS": 0.020376,
+          "PBFT": 0.016158,
+          "DPoS": 0.019472,
+          "Hybrid": 0.923247
+        },
+        "inference_ms": 0.79
+      },
+      {
+        "attack_risk": 0.1633,
+        "predicted": "Hybrid",
+        "confidence": 0.923928,
+        "probabilities": {
+          "PoW": 0.020711,
+          "PoS": 0.020259,
+          "PBFT": 0.015969,
+          "DPoS": 0.019133,
+          "Hybrid": 0.923928
+        },
+        "inference_ms": 0.94
+      },
+      {
+        "attack_risk": 0.1837,
+        "predicted": "Hybrid",
+        "confidence": 0.924464,
+        "probabilities": {
+          "PoW": 0.02074,
+          "PoS": 0.020135,
+          "PBFT": 0.015791,
+          "DPoS": 0.01887,
+          "Hybrid": 0.924464
+        },
+        "inference_ms": 0.83
+      },
+      {
+        "attack_risk": 0.2041,
+        "predicted": "Hybrid",
+        "confidence": 0.924883,
+        "probabilities": {
+          "PoW": 0.020839,
+          "PoS": 0.020001,
+          "PBFT": 0.015625,
+          "DPoS": 0.018651,
+          "Hybrid": 0.924883
+        },
+        "inference_ms": 0.79
+      },
+      {
+        "attack_risk": 0.2245,
+        "predicted": "Hybrid",
+        "confidence": 0.925181,
+        "probabilities": {
+          "PoW": 0.021028,
+          "PoS": 0.019847,
+          "PBFT": 0.015471,
+          "DPoS": 0.018474,
+          "Hybrid": 0.925181
+        },
+        "inference_ms": 0.79
+      },
+      {
+        "attack_risk": 0.2449,
+        "predicted": "Hybrid",
+        "confidence": 0.925337,
+        "probabilities": {
+          "PoW": 0.021339,
+          "PoS": 0.019662,
+          "PBFT": 0.015328,
+          "DPoS": 0.018334,
+          "Hybrid": 0.925337
+        },
+        "inference_ms": 0.81
+      },
+      {
+        "attack_risk": 0.2653,
+        "predicted": "Hybrid",
+        "confidence": 0.925287,
+        "probabilities": {
+          "PoW": 0.021838,
+          "PoS": 0.01944,
+          "PBFT": 0.015201,
+          "DPoS": 0.018235,
+          "Hybrid": 0.925287
+        },
+        "inference_ms": 0.84
+      },
+      {
+        "attack_risk": 0.2857,
+        "predicted": "Hybrid",
+        "confidence": 0.924861,
+        "probabilities": {
+          "PoW": 0.022658,
+          "PoS": 0.019181,
+          "PBFT": 0.015102,
+          "DPoS": 0.018199,
+          "Hybrid": 0.924861
+        },
+        "inference_ms": 0.83
+      },
+      {
+        "attack_risk": 0.3061,
+        "predicted": "Hybrid",
+        "confidence": 0.923643,
+        "probabilities": {
+          "PoW": 0.024096,
+          "PoS": 0.018912,
+          "PBFT": 0.015075,
+          "DPoS": 0.018275,
+          "Hybrid": 0.923643
+        },
+        "inference_ms": 0.79
+      },
+      {
+        "attack_risk": 0.3265,
+        "predicted": "Hybrid",
+        "confidence": 0.920373,
+        "probabilities": {
+          "PoW": 0.026998,
+          "PoS": 0.018747,
+          "PBFT": 0.015246,
+          "DPoS": 0.018636,
+          "Hybrid": 0.920373
+        },
+        "inference_ms": 0.8
+      },
+      {
+        "attack_risk": 0.3469,
+        "predicted": "Hybrid",
+        "confidence": 0.910407,
+        "probabilities": {
+          "PoW": 0.034466,
+          "PoS": 0.019162,
+          "PBFT": 0.016081,
+          "DPoS": 0.019883,
+          "Hybrid": 0.910407
+        },
+        "inference_ms": 0.95
+      },
+      {
+        "attack_risk": 0.3673,
+        "predicted": "Hybrid",
+        "confidence": 0.869519,
+        "probabilities": {
+          "PoW": 0.063852,
+          "PoS": 0.02233,
+          "PBFT": 0.019635,
+          "DPoS": 0.024663,
+          "Hybrid": 0.869519
+        },
+        "inference_ms": 0.81
+      },
+      {
+        "attack_risk": 0.3878,
+        "predicted": "Hybrid",
+        "confidence": 0.656595,
+        "probabilities": {
+          "PoW": 0.237579,
+          "PoS": 0.034148,
+          "PBFT": 0.031494,
+          "DPoS": 0.040184,
+          "Hybrid": 0.656595
+        },
+        "inference_ms": 0.8
+      },
+      {
+        "attack_risk": 0.4082,
+        "predicted": "PoW",
+        "confidence": 0.680083,
+        "probabilities": {
+          "PoW": 0.680083,
+          "PoS": 0.036015,
+          "PBFT": 0.033695,
+          "DPoS": 0.042753,
+          "Hybrid": 0.207454
+        },
+        "inference_ms": 1.49
+      },
+      {
+        "attack_risk": 0.4286,
+        "predicted": "PoW",
+        "confidence": 0.855527,
+        "probabilities": {
+          "PoW": 0.855527,
+          "PoS": 0.027116,
+          "PBFT": 0.025054,
+          "DPoS": 0.030424,
+          "Hybrid": 0.061879
+        },
+        "inference_ms": 0.84
+      },
+      {
+        "attack_risk": 0.449,
+        "predicted": "PoW",
+        "confidence": 0.894304,
+        "probabilities": {
+          "PoW": 0.894304,
+          "PoS": 0.024018,
+          "PBFT": 0.021943,
+          "DPoS": 0.025445,
+          "Hybrid": 0.03429
+        },
+        "inference_ms": 0.82
+      },
+      {
+        "attack_risk": 0.4694,
+        "predicted": "PoW",
+        "confidence": 0.906002,
+        "probabilities": {
+          "PoW": 0.906002,
+          "PoS": 0.023009,
+          "PBFT": 0.021,
+          "DPoS": 0.023666,
+          "Hybrid": 0.026323
+        },
+        "inference_ms": 0.81
+      },
+      {
+        "attack_risk": 0.4898,
+        "predicted": "PoW",
+        "confidence": 0.910818,
+        "probabilities": {
+          "PoW": 0.910818,
+          "PoS": 0.022512,
+          "PBFT": 0.020656,
+          "DPoS": 0.022926,
+          "Hybrid": 0.023088
+        },
+        "inference_ms": 0.8
+      },
+      {
+        "attack_risk": 0.5102,
+        "predicted": "PoW",
+        "confidence": 0.913381,
+        "probabilities": {
+          "PoW": 0.913381,
+          "PoS": 0.022166,
+          "PBFT": 0.020496,
+          "DPoS": 0.022553,
+          "Hybrid": 0.021405
+        },
+        "inference_ms": 0.96
+      },
+      {
+        "attack_risk": 0.5306,
+        "predicted": "PoW",
+        "confidence": 0.914989,
+        "probabilities": {
+          "PoW": 0.914989,
+          "PoS": 0.021889,
+          "PBFT": 0.02041,
+          "DPoS": 0.022337,
+          "Hybrid": 0.020376
+        },
+        "inference_ms": 0.89
+      },
+      {
+        "attack_risk": 0.551,
+        "predicted": "PoW",
+        "confidence": 0.916101,
+        "probabilities": {
+          "PoW": 0.916101,
+          "PoS": 0.021657,
+          "PBFT": 0.020359,
+          "DPoS": 0.022202,
+          "Hybrid": 0.019681
+        },
+        "inference_ms": 0.79
+      },
+      {
+        "attack_risk": 0.5714,
+        "predicted": "PoW",
+        "confidence": 0.916902,
+        "probabilities": {
+          "PoW": 0.916902,
+          "PoS": 0.021464,
+          "PBFT": 0.020328,
+          "DPoS": 0.022116,
+          "Hybrid": 0.019189
+        },
+        "inference_ms": 0.79
+      },
+      {
+        "attack_risk": 0.5918,
+        "predicted": "PoW",
+        "confidence": 0.917511,
+        "probabilities": {
+          "PoW": 0.917511,
+          "PoS": 0.021298,
+          "PBFT": 0.020309,
+          "DPoS": 0.022062,
+          "Hybrid": 0.018821
+        },
+        "inference_ms": 0.78
+      },
+      {
+        "attack_risk": 0.6122,
+        "predicted": "PoW",
+        "confidence": 0.917986,
+        "probabilities": {
+          "PoW": 0.917986,
+          "PoS": 0.021154,
+          "PBFT": 0.020296,
+          "DPoS": 0.022028,
+          "Hybrid": 0.018535
+        },
+        "inference_ms": 0.81
+      },
+      {
+        "attack_risk": 0.6327,
+        "predicted": "PoW",
+        "confidence": 0.918365,
+        "probabilities": {
+          "PoW": 0.918365,
+          "PoS": 0.021029,
+          "PBFT": 0.020288,
+          "DPoS": 0.02201,
+          "Hybrid": 0.018308
+        },
+        "inference_ms": 0.79
+      },
+      {
+        "attack_risk": 0.6531,
+        "predicted": "PoW",
+        "confidence": 0.918673,
+        "probabilities": {
+          "PoW": 0.918673,
+          "PoS": 0.020919,
+          "PBFT": 0.020282,
+          "DPoS": 0.022004,
+          "Hybrid": 0.018122
+        },
+        "inference_ms": 0.78
+      },
+      {
+        "attack_risk": 0.6735,
+        "predicted": "PoW",
+        "confidence": 0.918917,
+        "probabilities": {
+          "PoW": 0.918917,
+          "PoS": 0.020824,
+          "PBFT": 0.02028,
+          "DPoS": 0.022008,
+          "Hybrid": 0.017972
+        },
+        "inference_ms": 0.97
+      },
+      {
+        "attack_risk": 0.6939,
+        "predicted": "PoW",
+        "confidence": 0.919118,
+        "probabilities": {
+          "PoW": 0.919118,
+          "PoS": 0.02074,
+          "PBFT": 0.02028,
+          "DPoS": 0.022017,
+          "Hybrid": 0.017845
+        },
+        "inference_ms": 0.86
+      },
+      {
+        "attack_risk": 0.7143,
+        "predicted": "PoW",
+        "confidence": 0.919282,
+        "probabilities": {
+          "PoW": 0.919282,
+          "PoS": 0.020666,
+          "PBFT": 0.020281,
+          "DPoS": 0.022032,
+          "Hybrid": 0.017738
+        },
+        "inference_ms": 0.81
+      },
+      {
+        "attack_risk": 0.7347,
+        "predicted": "PoW",
+        "confidence": 0.919418,
+        "probabilities": {
+          "PoW": 0.919418,
+          "PoS": 0.0206,
+          "PBFT": 0.020284,
+          "DPoS": 0.022053,
+          "Hybrid": 0.017646
+        },
+        "inference_ms": 0.79
+      },
+      {
+        "attack_risk": 0.7551,
+        "predicted": "PoW",
+        "confidence": 0.919526,
+        "probabilities": {
+          "PoW": 0.919526,
+          "PoS": 0.020542,
+          "PBFT": 0.020289,
+          "DPoS": 0.022076,
+          "Hybrid": 0.017568
+        },
+        "inference_ms": 0.79
+      },
+      {
+        "attack_risk": 0.7755,
+        "predicted": "PoW",
+        "confidence": 0.919613,
+        "probabilities": {
+          "PoW": 0.919613,
+          "PoS": 0.020491,
+          "PBFT": 0.020295,
+          "DPoS": 0.022101,
+          "Hybrid": 0.0175
+        },
+        "inference_ms": 0.79
+      },
+      {
+        "attack_risk": 0.7959,
+        "predicted": "PoW",
+        "confidence": 0.919682,
+        "probabilities": {
+          "PoW": 0.919682,
+          "PoS": 0.020446,
+          "PBFT": 0.020302,
+          "DPoS": 0.022129,
+          "Hybrid": 0.017442
+        },
+        "inference_ms": 0.85
+      },
+      {
+        "attack_risk": 0.8163,
+        "predicted": "PoW",
+        "confidence": 0.919737,
+        "probabilities": {
+          "PoW": 0.919737,
+          "PoS": 0.020405,
+          "PBFT": 0.02031,
+          "DPoS": 0.022158,
+          "Hybrid": 0.01739
+        },
+        "inference_ms": 0.79
+      },
+      {
+        "attack_risk": 0.8367,
+        "predicted": "PoW",
+        "confidence": 0.919778,
+        "probabilities": {
+          "PoW": 0.919778,
+          "PoS": 0.020369,
+          "PBFT": 0.020318,
+          "DPoS": 0.022189,
+          "Hybrid": 0.017346
+        },
+        "inference_ms": 0.79
+      },
+      {
+        "attack_risk": 0.8571,
+        "predicted": "PoW",
+        "confidence": 0.91981,
+        "probabilities": {
+          "PoW": 0.91981,
+          "PoS": 0.020336,
+          "PBFT": 0.020327,
+          "DPoS": 0.02222,
+          "Hybrid": 0.017306
+        },
+        "inference_ms": 0.91
+      },
+      {
+        "attack_risk": 0.8776,
+        "predicted": "PoW",
+        "confidence": 0.919834,
+        "probabilities": {
+          "PoW": 0.919834,
+          "PoS": 0.020308,
+          "PBFT": 0.020337,
+          "DPoS": 0.022251,
+          "Hybrid": 0.017271
+        },
+        "inference_ms": 0.77
+      },
+      {
+        "attack_risk": 0.898,
+        "predicted": "PoW",
+        "confidence": 0.91985,
+        "probabilities": {
+          "PoW": 0.91985,
+          "PoS": 0.020282,
+          "PBFT": 0.020347,
+          "DPoS": 0.022282,
+          "Hybrid": 0.017239
+        },
+        "inference_ms": 0.79
+      },
+      {
+        "attack_risk": 0.9184,
+        "predicted": "PoW",
+        "confidence": 0.919859,
+        "probabilities": {
+          "PoW": 0.919859,
+          "PoS": 0.020258,
+          "PBFT": 0.020357,
+          "DPoS": 0.022314,
+          "Hybrid": 0.017211
+        },
+        "inference_ms": 0.81
+      },
+      {
+        "attack_risk": 0.9388,
+        "predicted": "PoW",
+        "confidence": 0.919864,
+        "probabilities": {
+          "PoW": 0.919864,
+          "PoS": 0.020237,
+          "PBFT": 0.020368,
+          "DPoS": 0.022345,
+          "Hybrid": 0.017186
+        },
+        "inference_ms": 0.92
+      },
+      {
+        "attack_risk": 0.9592,
+        "predicted": "PoW",
+        "confidence": 0.919864,
+        "probabilities": {
+          "PoW": 0.919864,
+          "PoS": 0.020218,
+          "PBFT": 0.020379,
+          "DPoS": 0.022375,
+          "Hybrid": 0.017164
+        },
+        "inference_ms": 0.83
+      },
+      {
+        "attack_risk": 0.9796,
+        "predicted": "PoW",
+        "confidence": 0.919861,
+        "probabilities": {
+          "PoW": 0.919861,
+          "PoS": 0.020201,
+          "PBFT": 0.02039,
+          "DPoS": 0.022405,
+          "Hybrid": 0.017143
+        },
+        "inference_ms": 0.95
+      },
+      {
+        "attack_risk": 1.0,
+        "predicted": "PoW",
+        "confidence": 0.919852,
+        "probabilities": {
+          "PoW": 0.919852,
+          "PoS": 0.020185,
+          "PBFT": 0.0204,
+          "DPoS": 0.022436,
+          "Hybrid": 0.017126
+        },
+        "inference_ms": 0.83
+      }
+    ],
+    "transitions": [
+      {
+        "attack_risk": 0.4082,
+        "from": "Hybrid",
+        "to": "PoW"
+      }
+    ]
+  },
+  "dynamic_scenario": {
+    "timestep_data": [
+      {
+        "time_s": 0.0,
+        "predicted": "Hybrid",
+        "confidence": 0.927597,
+        "probabilities": {
+          "PoW": 0.020907,
+          "PoS": 0.018405,
+          "PBFT": 0.015416,
+          "DPoS": 0.017676,
+          "Hybrid": 0.927597
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.45,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 1.01,
+        "predicted": "Hybrid",
+        "confidence": 0.927592,
+        "probabilities": {
+          "PoW": 0.020907,
+          "PoS": 0.018406,
+          "PBFT": 0.015417,
+          "DPoS": 0.017678,
+          "Hybrid": 0.927592
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.45252525252525255,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 2.02,
+        "predicted": "Hybrid",
+        "confidence": 0.927588,
+        "probabilities": {
+          "PoW": 0.020908,
+          "PoS": 0.018406,
+          "PBFT": 0.015418,
+          "DPoS": 0.01768,
+          "Hybrid": 0.927588
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.45505050505050504,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 3.03,
+        "predicted": "Hybrid",
+        "confidence": 0.927584,
+        "probabilities": {
+          "PoW": 0.020908,
+          "PoS": 0.018407,
+          "PBFT": 0.015419,
+          "DPoS": 0.017682,
+          "Hybrid": 0.927584
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.4575757575757576,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 4.04,
+        "predicted": "Hybrid",
+        "confidence": 0.92758,
+        "probabilities": {
+          "PoW": 0.020908,
+          "PoS": 0.018408,
+          "PBFT": 0.015421,
+          "DPoS": 0.017683,
+          "Hybrid": 0.92758
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.4601010101010101,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 5.05,
+        "predicted": "Hybrid",
+        "confidence": 0.927576,
+        "probabilities": {
+          "PoW": 0.020908,
+          "PoS": 0.018409,
+          "PBFT": 0.015422,
+          "DPoS": 0.017685,
+          "Hybrid": 0.927576
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.46262626262626266,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 6.06,
+        "predicted": "Hybrid",
+        "confidence": 0.927572,
+        "probabilities": {
+          "PoW": 0.020909,
+          "PoS": 0.01841,
+          "PBFT": 0.015423,
+          "DPoS": 0.017687,
+          "Hybrid": 0.927572
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.46515151515151515,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 7.07,
+        "predicted": "Hybrid",
+        "confidence": 0.927567,
+        "probabilities": {
+          "PoW": 0.020909,
+          "PoS": 0.018411,
+          "PBFT": 0.015424,
+          "DPoS": 0.017689,
+          "Hybrid": 0.927567
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.4676767676767677,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 8.08,
+        "predicted": "Hybrid",
+        "confidence": 0.927563,
+        "probabilities": {
+          "PoW": 0.020909,
+          "PoS": 0.018411,
+          "PBFT": 0.015425,
+          "DPoS": 0.017691,
+          "Hybrid": 0.927563
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.47020202020202023,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 9.09,
+        "predicted": "Hybrid",
+        "confidence": 0.927559,
+        "probabilities": {
+          "PoW": 0.02091,
+          "PoS": 0.018412,
+          "PBFT": 0.015427,
+          "DPoS": 0.017693,
+          "Hybrid": 0.927559
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.4727272727272727,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 10.1,
+        "predicted": "Hybrid",
+        "confidence": 0.927555,
+        "probabilities": {
+          "PoW": 0.02091,
+          "PoS": 0.018413,
+          "PBFT": 0.015428,
+          "DPoS": 0.017695,
+          "Hybrid": 0.927555
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.47525252525252526,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 11.11,
+        "predicted": "Hybrid",
+        "confidence": 0.92755,
+        "probabilities": {
+          "PoW": 0.02091,
+          "PoS": 0.018414,
+          "PBFT": 0.015429,
+          "DPoS": 0.017696,
+          "Hybrid": 0.92755
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.4777777777777778,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 12.12,
+        "predicted": "Hybrid",
+        "confidence": 0.927546,
+        "probabilities": {
+          "PoW": 0.02091,
+          "PoS": 0.018415,
+          "PBFT": 0.01543,
+          "DPoS": 0.017698,
+          "Hybrid": 0.927546
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.48030303030303034,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 13.13,
+        "predicted": "Hybrid",
+        "confidence": 0.927542,
+        "probabilities": {
+          "PoW": 0.020911,
+          "PoS": 0.018416,
+          "PBFT": 0.015431,
+          "DPoS": 0.0177,
+          "Hybrid": 0.927542
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.48282828282828283,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 14.14,
+        "predicted": "Hybrid",
+        "confidence": 0.927538,
+        "probabilities": {
+          "PoW": 0.020911,
+          "PoS": 0.018417,
+          "PBFT": 0.015433,
+          "DPoS": 0.017702,
+          "Hybrid": 0.927538
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.48535353535353537,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 15.15,
+        "predicted": "Hybrid",
+        "confidence": 0.927533,
+        "probabilities": {
+          "PoW": 0.020911,
+          "PoS": 0.018418,
+          "PBFT": 0.015434,
+          "DPoS": 0.017704,
+          "Hybrid": 0.927533
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.4878787878787879,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 16.16,
+        "predicted": "Hybrid",
+        "confidence": 0.927529,
+        "probabilities": {
+          "PoW": 0.020911,
+          "PoS": 0.018419,
+          "PBFT": 0.015435,
+          "DPoS": 0.017706,
+          "Hybrid": 0.927529
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.4904040404040404,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 17.17,
+        "predicted": "Hybrid",
+        "confidence": 0.927525,
+        "probabilities": {
+          "PoW": 0.020912,
+          "PoS": 0.01842,
+          "PBFT": 0.015436,
+          "DPoS": 0.017708,
+          "Hybrid": 0.927525
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.49292929292929294,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 18.18,
+        "predicted": "Hybrid",
+        "confidence": 0.92752,
+        "probabilities": {
+          "PoW": 0.020912,
+          "PoS": 0.018421,
+          "PBFT": 0.015438,
+          "DPoS": 0.01771,
+          "Hybrid": 0.92752
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.4954545454545455,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 19.19,
+        "predicted": "Hybrid",
+        "confidence": 0.927516,
+        "probabilities": {
+          "PoW": 0.020912,
+          "PoS": 0.018421,
+          "PBFT": 0.015439,
+          "DPoS": 0.017712,
+          "Hybrid": 0.927516
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 12.0,
+          "throughput_requirement_tps": 1200,
+          "byzantine_tolerance": 0.17,
+          "security_priority": 0.8,
+          "energy_budget": 0.6,
+          "bandwidth_mbps": 1500,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7,
+          "network_load": 0.49797979797979797,
+          "attack_risk": 0.55
+        }
+      },
+      {
+        "time_s": 20.2,
+        "predicted": "Hybrid",
+        "confidence": 0.9275,
+        "probabilities": {
+          "PoW": 0.020919,
+          "PoS": 0.01844,
+          "PBFT": 0.015437,
+          "DPoS": 0.017704,
+          "Hybrid": 0.9275
+        },
+        "network_state": {
+          "num_nodes": 150,
+          "connectivity": 0.7203030303030303,
+          "latency_requirement_sec": 12.080808080808081,
+          "throughput_requirement_tps": 1188,
+          "byzantine_tolerance": 0.1697979797979798,
+          "security_priority": 0.7997979797979798,
+          "energy_budget": 0.5964646464646464,
+          "bandwidth_mbps": 1492.9292929292928,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7005050505050505,
+          "network_load": 0.4994949494949495,
+          "attack_risk": 0.5508080808080809
+        }
+      },
+      {
+        "time_s": 21.21,
+        "predicted": "Hybrid",
+        "confidence": 0.927408,
+        "probabilities": {
+          "PoW": 0.02096,
+          "PoS": 0.018538,
+          "PBFT": 0.015421,
+          "DPoS": 0.017673,
+          "Hybrid": 0.927408
+        },
+        "network_state": {
+          "num_nodes": 153,
+          "connectivity": 0.7218181818181818,
+          "latency_requirement_sec": 12.484848484848486,
+          "throughput_requirement_tps": 1130,
+          "byzantine_tolerance": 0.1687878787878788,
+          "security_priority": 0.7987878787878788,
+          "energy_budget": 0.5787878787878787,
+          "bandwidth_mbps": 1457.5757575757575,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.703030303030303,
+          "network_load": 0.49696969696969695,
+          "attack_risk": 0.5548484848484849
+        }
+      },
+      {
+        "time_s": 22.22,
+        "predicted": "Hybrid",
+        "confidence": 0.92726,
+        "probabilities": {
+          "PoW": 0.021016,
+          "PoS": 0.018659,
+          "PBFT": 0.015411,
+          "DPoS": 0.017655,
+          "Hybrid": 0.92726
+        },
+        "network_state": {
+          "num_nodes": 155,
+          "connectivity": 0.7233333333333333,
+          "latency_requirement_sec": 12.88888888888889,
+          "throughput_requirement_tps": 1073,
+          "byzantine_tolerance": 0.16777777777777778,
+          "security_priority": 0.7977777777777778,
+          "energy_budget": 0.561111111111111,
+          "bandwidth_mbps": 1422.2222222222222,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7055555555555555,
+          "network_load": 0.49444444444444446,
+          "attack_risk": 0.558888888888889
+        }
+      },
+      {
+        "time_s": 23.23,
+        "predicted": "Hybrid",
+        "confidence": 0.92704,
+        "probabilities": {
+          "PoW": 0.021091,
+          "PoS": 0.01881,
+          "PBFT": 0.015407,
+          "DPoS": 0.017653,
+          "Hybrid": 0.92704
+        },
+        "network_state": {
+          "num_nodes": 158,
+          "connectivity": 0.7248484848484849,
+          "latency_requirement_sec": 13.292929292929294,
+          "throughput_requirement_tps": 1015,
+          "byzantine_tolerance": 0.1667676767676768,
+          "security_priority": 0.7967676767676768,
+          "energy_budget": 0.5434343434343434,
+          "bandwidth_mbps": 1386.8686868686868,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7080808080808081,
+          "network_load": 0.4919191919191919,
+          "attack_risk": 0.562929292929293
+        }
+      },
+      {
+        "time_s": 24.24,
+        "predicted": "Hybrid",
+        "confidence": 0.926726,
+        "probabilities": {
+          "PoW": 0.021187,
+          "PoS": 0.019005,
+          "PBFT": 0.015417,
+          "DPoS": 0.017665,
+          "Hybrid": 0.926726
+        },
+        "network_state": {
+          "num_nodes": 160,
+          "connectivity": 0.7263636363636363,
+          "latency_requirement_sec": 13.696969696969697,
+          "throughput_requirement_tps": 958,
+          "byzantine_tolerance": 0.16575757575757577,
+          "security_priority": 0.7957575757575758,
+          "energy_budget": 0.5257575757575758,
+          "bandwidth_mbps": 1351.5151515151515,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7106060606060606,
+          "network_load": 0.4893939393939394,
+          "attack_risk": 0.566969696969697
+        }
+      },
+      {
+        "time_s": 25.25,
+        "predicted": "Hybrid",
+        "confidence": 0.926272,
+        "probabilities": {
+          "PoW": 0.021309,
+          "PoS": 0.019282,
+          "PBFT": 0.015448,
+          "DPoS": 0.017689,
+          "Hybrid": 0.926272
+        },
+        "network_state": {
+          "num_nodes": 163,
+          "connectivity": 0.7278787878787879,
+          "latency_requirement_sec": 14.1010101010101,
+          "throughput_requirement_tps": 900,
+          "byzantine_tolerance": 0.16474747474747475,
+          "security_priority": 0.7947474747474748,
+          "energy_budget": 0.508080808080808,
+          "bandwidth_mbps": 1316.1616161616162,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7131313131313131,
+          "network_load": 0.4868686868686869,
+          "attack_risk": 0.5710101010101011
+        }
+      },
+      {
+        "time_s": 26.26,
+        "predicted": "Hybrid",
+        "confidence": 0.925578,
+        "probabilities": {
+          "PoW": 0.021458,
+          "PoS": 0.019733,
+          "PBFT": 0.015515,
+          "DPoS": 0.017717,
+          "Hybrid": 0.925578
+        },
+        "network_state": {
+          "num_nodes": 165,
+          "connectivity": 0.7293939393939394,
+          "latency_requirement_sec": 14.505050505050505,
+          "throughput_requirement_tps": 843,
+          "byzantine_tolerance": 0.16373737373737374,
+          "security_priority": 0.7937373737373737,
+          "energy_budget": 0.4904040404040404,
+          "bandwidth_mbps": 1280.8080808080808,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7156565656565657,
+          "network_load": 0.48434343434343435,
+          "attack_risk": 0.5750505050505051
+        }
+      },
+      {
+        "time_s": 27.27,
+        "predicted": "Hybrid",
+        "confidence": 0.924338,
+        "probabilities": {
+          "PoW": 0.021651,
+          "PoS": 0.020612,
+          "PBFT": 0.01565,
+          "DPoS": 0.017749,
+          "Hybrid": 0.924338
+        },
+        "network_state": {
+          "num_nodes": 168,
+          "connectivity": 0.7309090909090908,
+          "latency_requirement_sec": 14.90909090909091,
+          "throughput_requirement_tps": 785,
+          "byzantine_tolerance": 0.16272727272727275,
+          "security_priority": 0.7927272727272727,
+          "energy_budget": 0.4727272727272727,
+          "bandwidth_mbps": 1245.4545454545455,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7181818181818181,
+          "network_load": 0.4818181818181818,
+          "attack_risk": 0.5790909090909091
+        }
+      },
+      {
+        "time_s": 28.28,
+        "predicted": "Hybrid",
+        "confidence": 0.921553,
+        "probabilities": {
+          "PoW": 0.021967,
+          "PoS": 0.022696,
+          "PBFT": 0.015952,
+          "DPoS": 0.017833,
+          "Hybrid": 0.921553
+        },
+        "network_state": {
+          "num_nodes": 170,
+          "connectivity": 0.7324242424242424,
+          "latency_requirement_sec": 15.313131313131313,
+          "throughput_requirement_tps": 727,
+          "byzantine_tolerance": 0.16171717171717173,
+          "security_priority": 0.7917171717171717,
+          "energy_budget": 0.45505050505050504,
+          "bandwidth_mbps": 1210.1010101010102,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7207070707070706,
+          "network_load": 0.47929292929292927,
+          "attack_risk": 0.5831313131313132
+        }
+      },
+      {
+        "time_s": 29.29,
+        "predicted": "Hybrid",
+        "confidence": 0.911914,
+        "probabilities": {
+          "PoW": 0.022879,
+          "PoS": 0.02992,
+          "PBFT": 0.016934,
+          "DPoS": 0.018354,
+          "Hybrid": 0.911914
+        },
+        "network_state": {
+          "num_nodes": 173,
+          "connectivity": 0.7339393939393939,
+          "latency_requirement_sec": 15.717171717171718,
+          "throughput_requirement_tps": 670,
+          "byzantine_tolerance": 0.16070707070707071,
+          "security_priority": 0.7907070707070708,
+          "energy_budget": 0.4373737373737373,
+          "bandwidth_mbps": 1174.7474747474748,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7232323232323232,
+          "network_load": 0.4767676767676768,
+          "attack_risk": 0.5871717171717172
+        }
+      },
+      {
+        "time_s": 30.3,
+        "predicted": "Hybrid",
+        "confidence": 0.828527,
+        "probabilities": {
+          "PoW": 0.028806,
+          "PoS": 0.095874,
+          "PBFT": 0.023453,
+          "DPoS": 0.02334,
+          "Hybrid": 0.828527
+        },
+        "network_state": {
+          "num_nodes": 175,
+          "connectivity": 0.7354545454545455,
+          "latency_requirement_sec": 16.12121212121212,
+          "throughput_requirement_tps": 612,
+          "byzantine_tolerance": 0.1596969696969697,
+          "security_priority": 0.7896969696969698,
+          "energy_budget": 0.4196969696969697,
+          "bandwidth_mbps": 1139.3939393939393,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7257575757575757,
+          "network_load": 0.47424242424242424,
+          "attack_risk": 0.5912121212121213
+        }
+      },
+      {
+        "time_s": 31.31,
+        "predicted": "PoS",
+        "confidence": 0.700217,
+        "probabilities": {
+          "PoW": 0.030835,
+          "PoS": 0.700217,
+          "PBFT": 0.030206,
+          "DPoS": 0.027769,
+          "Hybrid": 0.210973
+        },
+        "network_state": {
+          "num_nodes": 178,
+          "connectivity": 0.7369696969696969,
+          "latency_requirement_sec": 16.525252525252526,
+          "throughput_requirement_tps": 555,
+          "byzantine_tolerance": 0.1586868686868687,
+          "security_priority": 0.7886868686868688,
+          "energy_budget": 0.40202020202020194,
+          "bandwidth_mbps": 1104.040404040404,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7282828282828282,
+          "network_load": 0.4717171717171717,
+          "attack_risk": 0.5952525252525253
+        }
+      },
+      {
+        "time_s": 32.32,
+        "predicted": "PoS",
+        "confidence": 0.889457,
+        "probabilities": {
+          "PoW": 0.020971,
+          "PoS": 0.889457,
+          "PBFT": 0.02105,
+          "DPoS": 0.020034,
+          "Hybrid": 0.048487
+        },
+        "network_state": {
+          "num_nodes": 180,
+          "connectivity": 0.7384848484848484,
+          "latency_requirement_sec": 16.92929292929293,
+          "throughput_requirement_tps": 497,
+          "byzantine_tolerance": 0.1576767676767677,
+          "security_priority": 0.7876767676767678,
+          "energy_budget": 0.3843434343434343,
+          "bandwidth_mbps": 1068.6868686868686,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7308080808080808,
+          "network_load": 0.46919191919191916,
+          "attack_risk": 0.5992929292929293
+        }
+      },
+      {
+        "time_s": 33.33,
+        "predicted": "PoS",
+        "confidence": 0.913432,
+        "probabilities": {
+          "PoW": 0.019167,
+          "PoS": 0.913432,
+          "PBFT": 0.019211,
+          "DPoS": 0.018574,
+          "Hybrid": 0.029616
+        },
+        "network_state": {
+          "num_nodes": 183,
+          "connectivity": 0.74,
+          "latency_requirement_sec": 17.333333333333336,
+          "throughput_requirement_tps": 439,
+          "byzantine_tolerance": 0.15666666666666668,
+          "security_priority": 0.7866666666666667,
+          "energy_budget": 0.36666666666666664,
+          "bandwidth_mbps": 1033.3333333333333,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7333333333333333,
+          "network_load": 0.4666666666666667,
+          "attack_risk": 0.6033333333333334
+        }
+      },
+      {
+        "time_s": 34.34,
+        "predicted": "PoS",
+        "confidence": 0.920193,
+        "probabilities": {
+          "PoW": 0.018663,
+          "PoS": 0.920193,
+          "PBFT": 0.018774,
+          "DPoS": 0.018186,
+          "Hybrid": 0.024184
+        },
+        "network_state": {
+          "num_nodes": 185,
+          "connectivity": 0.7415151515151515,
+          "latency_requirement_sec": 17.737373737373737,
+          "throughput_requirement_tps": 382,
+          "byzantine_tolerance": 0.15565656565656566,
+          "security_priority": 0.7856565656565657,
+          "energy_budget": 0.3489898989898989,
+          "bandwidth_mbps": 997.9797979797979,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7358585858585858,
+          "network_load": 0.46414141414141413,
+          "attack_risk": 0.6073737373737375
+        }
+      },
+      {
+        "time_s": 35.35,
+        "predicted": "PoS",
+        "confidence": 0.923081,
+        "probabilities": {
+          "PoW": 0.018471,
+          "PoS": 0.923081,
+          "PBFT": 0.0187,
+          "DPoS": 0.018071,
+          "Hybrid": 0.021677
+        },
+        "network_state": {
+          "num_nodes": 188,
+          "connectivity": 0.743030303030303,
+          "latency_requirement_sec": 18.141414141414142,
+          "throughput_requirement_tps": 324,
+          "byzantine_tolerance": 0.15464646464646464,
+          "security_priority": 0.7846464646464647,
+          "energy_budget": 0.3313131313131312,
+          "bandwidth_mbps": 962.6262626262625,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7383838383838384,
+          "network_load": 0.4616161616161616,
+          "attack_risk": 0.6114141414141415
+        }
+      },
+      {
+        "time_s": 36.36,
+        "predicted": "PoS",
+        "confidence": 0.92446,
+        "probabilities": {
+          "PoW": 0.01841,
+          "PoS": 0.92446,
+          "PBFT": 0.018774,
+          "DPoS": 0.018079,
+          "Hybrid": 0.020277
+        },
+        "network_state": {
+          "num_nodes": 190,
+          "connectivity": 0.7445454545454545,
+          "latency_requirement_sec": 18.545454545454547,
+          "throughput_requirement_tps": 267,
+          "byzantine_tolerance": 0.15363636363636365,
+          "security_priority": 0.7836363636363637,
+          "energy_budget": 0.3136363636363636,
+          "bandwidth_mbps": 927.2727272727271,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7409090909090909,
+          "network_load": 0.4590909090909091,
+          "attack_risk": 0.6154545454545455
+        }
+      },
+      {
+        "time_s": 37.37,
+        "predicted": "PoS",
+        "confidence": 0.925141,
+        "probabilities": {
+          "PoW": 0.018418,
+          "PoS": 0.925141,
+          "PBFT": 0.018912,
+          "DPoS": 0.01815,
+          "Hybrid": 0.01938
+        },
+        "network_state": {
+          "num_nodes": 193,
+          "connectivity": 0.7460606060606061,
+          "latency_requirement_sec": 18.94949494949495,
+          "throughput_requirement_tps": 209,
+          "byzantine_tolerance": 0.15262626262626264,
+          "security_priority": 0.7826262626262627,
+          "energy_budget": 0.2959595959595959,
+          "bandwidth_mbps": 891.9191919191918,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7434343434343434,
+          "network_load": 0.45656565656565656,
+          "attack_risk": 0.6194949494949495
+        }
+      },
+      {
+        "time_s": 38.38,
+        "predicted": "PoS",
+        "confidence": 0.925426,
+        "probabilities": {
+          "PoW": 0.018463,
+          "PoS": 0.925426,
+          "PBFT": 0.019078,
+          "DPoS": 0.018254,
+          "Hybrid": 0.018779
+        },
+        "network_state": {
+          "num_nodes": 195,
+          "connectivity": 0.7475757575757576,
+          "latency_requirement_sec": 19.353535353535356,
+          "throughput_requirement_tps": 152,
+          "byzantine_tolerance": 0.15161616161616162,
+          "security_priority": 0.7816161616161617,
+          "energy_budget": 0.27828282828282824,
+          "bandwidth_mbps": 856.5656565656565,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7459595959595959,
+          "network_load": 0.454040404040404,
+          "attack_risk": 0.6235353535353536
+        }
+      },
+      {
+        "time_s": 39.39,
+        "predicted": "PoS",
+        "confidence": 0.925494,
+        "probabilities": {
+          "PoW": 0.018529,
+          "PoS": 0.925494,
+          "PBFT": 0.019253,
+          "DPoS": 0.018376,
+          "Hybrid": 0.018348
+        },
+        "network_state": {
+          "num_nodes": 198,
+          "connectivity": 0.749090909090909,
+          "latency_requirement_sec": 19.757575757575758,
+          "throughput_requirement_tps": 94,
+          "byzantine_tolerance": 0.1506060606060606,
+          "security_priority": 0.7806060606060606,
+          "energy_budget": 0.2606060606060605,
+          "bandwidth_mbps": 821.212121212121,
+          "consistency_requirement": 0.75,
+          "decentralization_requirement": 0.7484848484848484,
+          "network_load": 0.4515151515151515,
+          "attack_risk": 0.6275757575757577
+        }
+      },
+      {
+        "time_s": 40.4,
+        "predicted": "PoS",
+        "confidence": 0.925372,
+        "probabilities": {
+          "PoW": 0.018536,
+          "PoS": 0.925372,
+          "PBFT": 0.019367,
+          "DPoS": 0.018419,
+          "Hybrid": 0.018306
+        },
+        "network_state": {
+          "num_nodes": 196,
+          "connectivity": 0.753030303030303,
+          "latency_requirement_sec": 19.646464646464644,
+          "throughput_requirement_tps": 100,
+          "byzantine_tolerance": 0.15141414141414142,
+          "security_priority": 0.7793939393939394,
+          "energy_budget": 0.2550505050505051,
+          "bandwidth_mbps": 840.4040404040409,
+          "consistency_requirement": 0.7534343434343435,
+          "decentralization_requirement": 0.7439393939393939,
+          "network_load": 0.45202020202020204,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 41.41,
+        "predicted": "PoS",
+        "confidence": 0.924992,
+        "probabilities": {
+          "PoW": 0.01845,
+          "PoS": 0.924992,
+          "PBFT": 0.019405,
+          "DPoS": 0.018344,
+          "Hybrid": 0.018809
+        },
+        "network_state": {
+          "num_nodes": 188,
+          "connectivity": 0.7606060606060606,
+          "latency_requirement_sec": 18.76262626262626,
+          "throughput_requirement_tps": 201,
+          "byzantine_tolerance": 0.15494949494949495,
+          "security_priority": 0.777878787878788,
+          "energy_budget": 0.26767676767676774,
+          "bandwidth_mbps": 941.4141414141419,
+          "consistency_requirement": 0.762020202020202,
+          "decentralization_requirement": 0.7287878787878788,
+          "network_load": 0.4570707070707071,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 42.42,
+        "predicted": "PoS",
+        "confidence": 0.924277,
+        "probabilities": {
+          "PoW": 0.018392,
+          "PoS": 0.924277,
+          "PBFT": 0.019479,
+          "DPoS": 0.018291,
+          "Hybrid": 0.019561
+        },
+        "network_state": {
+          "num_nodes": 180,
+          "connectivity": 0.7681818181818182,
+          "latency_requirement_sec": 17.878787878787875,
+          "throughput_requirement_tps": 302,
+          "byzantine_tolerance": 0.1584848484848485,
+          "security_priority": 0.7763636363636364,
+          "energy_budget": 0.2803030303030304,
+          "bandwidth_mbps": 1042.424242424243,
+          "consistency_requirement": 0.7706060606060606,
+          "decentralization_requirement": 0.7136363636363635,
+          "network_load": 0.46212121212121215,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 43.43,
+        "predicted": "PoS",
+        "confidence": 0.922884,
+        "probabilities": {
+          "PoW": 0.018398,
+          "PoS": 0.922884,
+          "PBFT": 0.019629,
+          "DPoS": 0.018295,
+          "Hybrid": 0.020795
+        },
+        "network_state": {
+          "num_nodes": 172,
+          "connectivity": 0.7757575757575758,
+          "latency_requirement_sec": 16.99494949494949,
+          "throughput_requirement_tps": 403,
+          "byzantine_tolerance": 0.16202020202020204,
+          "security_priority": 0.7748484848484849,
+          "energy_budget": 0.292929292929293,
+          "bandwidth_mbps": 1143.434343434344,
+          "consistency_requirement": 0.7791919191919192,
+          "decentralization_requirement": 0.6984848484848484,
+          "network_load": 0.46717171717171724,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 44.44,
+        "predicted": "PoS",
+        "confidence": 0.919874,
+        "probabilities": {
+          "PoW": 0.018565,
+          "PoS": 0.919874,
+          "PBFT": 0.019966,
+          "DPoS": 0.018444,
+          "Hybrid": 0.023151
+        },
+        "network_state": {
+          "num_nodes": 164,
+          "connectivity": 0.7833333333333333,
+          "latency_requirement_sec": 16.111111111111107,
+          "throughput_requirement_tps": 504,
+          "byzantine_tolerance": 0.16555555555555557,
+          "security_priority": 0.7733333333333333,
+          "energy_budget": 0.30555555555555564,
+          "bandwidth_mbps": 1244.444444444445,
+          "consistency_requirement": 0.7877777777777778,
+          "decentralization_requirement": 0.6833333333333332,
+          "network_load": 0.47222222222222227,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 45.45,
+        "predicted": "PoS",
+        "confidence": 0.911486,
+        "probabilities": {
+          "PoW": 0.019237,
+          "PoS": 0.911486,
+          "PBFT": 0.020906,
+          "DPoS": 0.019052,
+          "Hybrid": 0.029319
+        },
+        "network_state": {
+          "num_nodes": 156,
+          "connectivity": 0.790909090909091,
+          "latency_requirement_sec": 15.227272727272723,
+          "throughput_requirement_tps": 605,
+          "byzantine_tolerance": 0.1690909090909091,
+          "security_priority": 0.7718181818181818,
+          "energy_budget": 0.31818181818181823,
+          "bandwidth_mbps": 1345.454545454546,
+          "consistency_requirement": 0.7963636363636364,
+          "decentralization_requirement": 0.6681818181818181,
+          "network_load": 0.4772727272727273,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 46.46,
+        "predicted": "PoS",
+        "confidence": 0.858751,
+        "probabilities": {
+          "PoW": 0.023313,
+          "PoS": 0.858751,
+          "PBFT": 0.025869,
+          "DPoS": 0.022581,
+          "Hybrid": 0.069486
+        },
+        "network_state": {
+          "num_nodes": 148,
+          "connectivity": 0.7984848484848486,
+          "latency_requirement_sec": 14.343434343434339,
+          "throughput_requirement_tps": 706,
+          "byzantine_tolerance": 0.17262626262626266,
+          "security_priority": 0.7703030303030303,
+          "energy_budget": 0.3308080808080809,
+          "bandwidth_mbps": 1446.464646464647,
+          "consistency_requirement": 0.804949494949495,
+          "decentralization_requirement": 0.653030303030303,
+          "network_load": 0.4823232323232324,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 47.47,
+        "predicted": "Hybrid",
+        "confidence": 0.81031,
+        "probabilities": {
+          "PoW": 0.029178,
+          "PoS": 0.107134,
+          "PBFT": 0.028299,
+          "DPoS": 0.025079,
+          "Hybrid": 0.81031
+        },
+        "network_state": {
+          "num_nodes": 140,
+          "connectivity": 0.8060606060606061,
+          "latency_requirement_sec": 13.459595959595955,
+          "throughput_requirement_tps": 807,
+          "byzantine_tolerance": 0.17616161616161619,
+          "security_priority": 0.7687878787878788,
+          "energy_budget": 0.34343434343434354,
+          "bandwidth_mbps": 1547.474747474748,
+          "consistency_requirement": 0.8135353535353536,
+          "decentralization_requirement": 0.6378787878787878,
+          "network_load": 0.4873737373737374,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 48.48,
+        "predicted": "Hybrid",
+        "confidence": 0.916323,
+        "probabilities": {
+          "PoW": 0.021809,
+          "PoS": 0.024193,
+          "PBFT": 0.019234,
+          "DPoS": 0.018441,
+          "Hybrid": 0.916323
+        },
+        "network_state": {
+          "num_nodes": 132,
+          "connectivity": 0.8136363636363636,
+          "latency_requirement_sec": 12.575757575757576,
+          "throughput_requirement_tps": 908,
+          "byzantine_tolerance": 0.1796969696969697,
+          "security_priority": 0.7672727272727273,
+          "energy_budget": 0.3560606060606061,
+          "bandwidth_mbps": 1648.4848484848485,
+          "consistency_requirement": 0.8221212121212121,
+          "decentralization_requirement": 0.6227272727272728,
+          "network_load": 0.49242424242424243,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 49.49,
+        "predicted": "Hybrid",
+        "confidence": 0.9174,
+        "probabilities": {
+          "PoW": 0.021477,
+          "PoS": 0.020988,
+          "PBFT": 0.02198,
+          "DPoS": 0.018155,
+          "Hybrid": 0.9174
+        },
+        "network_state": {
+          "num_nodes": 124,
+          "connectivity": 0.8212121212121212,
+          "latency_requirement_sec": 11.691919191919192,
+          "throughput_requirement_tps": 1009,
+          "byzantine_tolerance": 0.18323232323232325,
+          "security_priority": 0.7657575757575757,
+          "energy_budget": 0.3686868686868687,
+          "bandwidth_mbps": 1749.4949494949497,
+          "consistency_requirement": 0.8307070707070707,
+          "decentralization_requirement": 0.6075757575757575,
+          "network_load": 0.4974747474747475,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 50.51,
+        "predicted": "Hybrid",
+        "confidence": 0.85249,
+        "probabilities": {
+          "PoW": 0.026179,
+          "PoS": 0.027158,
+          "PBFT": 0.071434,
+          "DPoS": 0.022739,
+          "Hybrid": 0.85249
+        },
+        "network_state": {
+          "num_nodes": 115,
+          "connectivity": 0.8287878787878789,
+          "latency_requirement_sec": 10.808080808080808,
+          "throughput_requirement_tps": 1110,
+          "byzantine_tolerance": 0.18676767676767678,
+          "security_priority": 0.7642424242424243,
+          "energy_budget": 0.3813131313131313,
+          "bandwidth_mbps": 1850.5050505050506,
+          "consistency_requirement": 0.8392929292929293,
+          "decentralization_requirement": 0.5924242424242424,
+          "network_load": 0.5025252525252526,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 51.52,
+        "predicted": "PBFT",
+        "confidence": 0.736437,
+        "probabilities": {
+          "PoW": 0.029727,
+          "PoS": 0.033246,
+          "PBFT": 0.736437,
+          "DPoS": 0.030735,
+          "Hybrid": 0.169855
+        },
+        "network_state": {
+          "num_nodes": 107,
+          "connectivity": 0.8363636363636364,
+          "latency_requirement_sec": 9.924242424242424,
+          "throughput_requirement_tps": 1211,
+          "byzantine_tolerance": 0.1903030303030303,
+          "security_priority": 0.7627272727272727,
+          "energy_budget": 0.3939393939393939,
+          "bandwidth_mbps": 1951.5151515151515,
+          "consistency_requirement": 0.8478787878787879,
+          "decentralization_requirement": 0.5772727272727273,
+          "network_load": 0.5075757575757576,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 52.53,
+        "predicted": "PBFT",
+        "confidence": 0.896477,
+        "probabilities": {
+          "PoW": 0.019524,
+          "PoS": 0.020759,
+          "PBFT": 0.896477,
+          "DPoS": 0.020854,
+          "Hybrid": 0.042387
+        },
+        "network_state": {
+          "num_nodes": 99,
+          "connectivity": 0.843939393939394,
+          "latency_requirement_sec": 9.04040404040404,
+          "throughput_requirement_tps": 1312,
+          "byzantine_tolerance": 0.19383838383838384,
+          "security_priority": 0.7612121212121212,
+          "energy_budget": 0.4065656565656566,
+          "bandwidth_mbps": 2052.5252525252527,
+          "consistency_requirement": 0.8564646464646465,
+          "decentralization_requirement": 0.5621212121212121,
+          "network_load": 0.5126262626262627,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 53.54,
+        "predicted": "PBFT",
+        "confidence": 0.917015,
+        "probabilities": {
+          "PoW": 0.017706,
+          "PoS": 0.0185,
+          "PBFT": 0.917015,
+          "DPoS": 0.018597,
+          "Hybrid": 0.028183
+        },
+        "network_state": {
+          "num_nodes": 91,
+          "connectivity": 0.8515151515151516,
+          "latency_requirement_sec": 8.156565656565656,
+          "throughput_requirement_tps": 1413,
+          "byzantine_tolerance": 0.19737373737373737,
+          "security_priority": 0.7596969696969698,
+          "energy_budget": 0.4191919191919192,
+          "bandwidth_mbps": 2153.5353535353534,
+          "consistency_requirement": 0.8650505050505051,
+          "decentralization_requirement": 0.546969696969697,
+          "network_load": 0.5176767676767677,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 54.55,
+        "predicted": "PBFT",
+        "confidence": 0.923711,
+        "probabilities": {
+          "PoW": 0.017113,
+          "PoS": 0.017757,
+          "PBFT": 0.923711,
+          "DPoS": 0.017661,
+          "Hybrid": 0.023758
+        },
+        "network_state": {
+          "num_nodes": 83,
+          "connectivity": 0.8590909090909091,
+          "latency_requirement_sec": 7.272727272727272,
+          "throughput_requirement_tps": 1514,
+          "byzantine_tolerance": 0.20090909090909093,
+          "security_priority": 0.7581818181818182,
+          "energy_budget": 0.4318181818181818,
+          "bandwidth_mbps": 2254.5454545454545,
+          "consistency_requirement": 0.8736363636363637,
+          "decentralization_requirement": 0.5318181818181819,
+          "network_load": 0.5227272727272727,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 55.56,
+        "predicted": "PBFT",
+        "confidence": 0.927,
+        "probabilities": {
+          "PoW": 0.016831,
+          "PoS": 0.017399,
+          "PBFT": 0.927,
+          "DPoS": 0.01713,
+          "Hybrid": 0.021639
+        },
+        "network_state": {
+          "num_nodes": 75,
+          "connectivity": 0.8666666666666667,
+          "latency_requirement_sec": 6.3888888888888875,
+          "throughput_requirement_tps": 1615,
+          "byzantine_tolerance": 0.20444444444444446,
+          "security_priority": 0.7566666666666667,
+          "energy_budget": 0.4444444444444445,
+          "bandwidth_mbps": 2355.5555555555557,
+          "consistency_requirement": 0.8822222222222222,
+          "decentralization_requirement": 0.5166666666666666,
+          "network_load": 0.5277777777777778,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 56.57,
+        "predicted": "PBFT",
+        "confidence": 0.928961,
+        "probabilities": {
+          "PoW": 0.016671,
+          "PoS": 0.01719,
+          "PBFT": 0.928961,
+          "DPoS": 0.016787,
+          "Hybrid": 0.020391
+        },
+        "network_state": {
+          "num_nodes": 67,
+          "connectivity": 0.8742424242424243,
+          "latency_requirement_sec": 5.505050505050503,
+          "throughput_requirement_tps": 1716,
+          "byzantine_tolerance": 0.207979797979798,
+          "security_priority": 0.7551515151515151,
+          "energy_budget": 0.45707070707070707,
+          "bandwidth_mbps": 2456.565656565657,
+          "consistency_requirement": 0.8908080808080808,
+          "decentralization_requirement": 0.5015151515151515,
+          "network_load": 0.5328282828282829,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 57.58,
+        "predicted": "PBFT",
+        "confidence": 0.930261,
+        "probabilities": {
+          "PoW": 0.016571,
+          "PoS": 0.017054,
+          "PBFT": 0.930261,
+          "DPoS": 0.01655,
+          "Hybrid": 0.019564
+        },
+        "network_state": {
+          "num_nodes": 59,
+          "connectivity": 0.8818181818181818,
+          "latency_requirement_sec": 4.621212121212119,
+          "throughput_requirement_tps": 1817,
+          "byzantine_tolerance": 0.21151515151515152,
+          "security_priority": 0.7536363636363637,
+          "energy_budget": 0.4696969696969697,
+          "bandwidth_mbps": 2557.575757575758,
+          "consistency_requirement": 0.8993939393939394,
+          "decentralization_requirement": 0.48636363636363633,
+          "network_load": 0.5378787878787878,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 58.59,
+        "predicted": "PBFT",
+        "confidence": 0.931182,
+        "probabilities": {
+          "PoW": 0.016505,
+          "PoS": 0.01696,
+          "PBFT": 0.931182,
+          "DPoS": 0.016378,
+          "Hybrid": 0.018975
+        },
+        "network_state": {
+          "num_nodes": 51,
+          "connectivity": 0.8893939393939394,
+          "latency_requirement_sec": 3.737373737373737,
+          "throughput_requirement_tps": 1918,
+          "byzantine_tolerance": 0.21505050505050505,
+          "security_priority": 0.7521212121212122,
+          "energy_budget": 0.4823232323232324,
+          "bandwidth_mbps": 2658.5858585858587,
+          "consistency_requirement": 0.907979797979798,
+          "decentralization_requirement": 0.4712121212121212,
+          "network_load": 0.5429292929292929,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 59.6,
+        "predicted": "PBFT",
+        "confidence": 0.931867,
+        "probabilities": {
+          "PoW": 0.016459,
+          "PoS": 0.016892,
+          "PBFT": 0.931867,
+          "DPoS": 0.016251,
+          "Hybrid": 0.018532
+        },
+        "network_state": {
+          "num_nodes": 43,
+          "connectivity": 0.896969696969697,
+          "latency_requirement_sec": 2.853535353535353,
+          "throughput_requirement_tps": 2019,
+          "byzantine_tolerance": 0.2185858585858586,
+          "security_priority": 0.7506060606060606,
+          "energy_budget": 0.494949494949495,
+          "bandwidth_mbps": 2759.59595959596,
+          "consistency_requirement": 0.9165656565656566,
+          "decentralization_requirement": 0.45606060606060606,
+          "network_load": 0.547979797979798,
+          "attack_risk": 0.63
+        }
+      },
+      {
+        "time_s": 60.61,
+        "predicted": "PBFT",
+        "confidence": 0.931277,
+        "probabilities": {
+          "PoW": 0.016623,
+          "PoS": 0.016914,
+          "PBFT": 0.931277,
+          "DPoS": 0.016345,
+          "Hybrid": 0.018841
+        },
+        "network_state": {
+          "num_nodes": 61,
+          "connectivity": 0.8984848484848486,
+          "latency_requirement_sec": 3.7727272727272787,
+          "throughput_requirement_tps": 1998,
+          "byzantine_tolerance": 0.22181818181818183,
+          "security_priority": 0.7557575757575757,
+          "energy_budget": 0.5115151515151516,
+          "bandwidth_mbps": 2730.30303030303,
+          "consistency_requirement": 0.9193939393939394,
+          "decentralization_requirement": 0.46424242424242435,
+          "network_load": 0.5424242424242425,
+          "attack_risk": 0.6366666666666667
+        }
+      },
+      {
+        "time_s": 61.62,
+        "predicted": "PBFT",
+        "confidence": 0.929388,
+        "probabilities": {
+          "PoW": 0.017015,
+          "PoS": 0.017052,
+          "PBFT": 0.929388,
+          "DPoS": 0.016665,
+          "Hybrid": 0.019881
+        },
+        "network_state": {
+          "num_nodes": 96,
+          "connectivity": 0.895959595959596,
+          "latency_requirement_sec": 5.893939393939401,
+          "throughput_requirement_tps": 1895,
+          "byzantine_tolerance": 0.22484848484848485,
+          "security_priority": 0.7653535353535353,
+          "energy_budget": 0.5307070707070708,
+          "bandwidth_mbps": 2614.141414141414,
+          "consistency_requirement": 0.9183838383838384,
+          "decentralization_requirement": 0.48797979797979807,
+          "network_load": 0.5297979797979798,
+          "attack_risk": 0.6477777777777778
+        }
+      },
+      {
+        "time_s": 62.63,
+        "predicted": "PBFT",
+        "confidence": 0.926381,
+        "probabilities": {
+          "PoW": 0.017598,
+          "PoS": 0.017335,
+          "PBFT": 0.926381,
+          "DPoS": 0.017157,
+          "Hybrid": 0.021529
+        },
+        "network_state": {
+          "num_nodes": 131,
+          "connectivity": 0.8934343434343435,
+          "latency_requirement_sec": 8.015151515151523,
+          "throughput_requirement_tps": 1793,
+          "byzantine_tolerance": 0.2278787878787879,
+          "security_priority": 0.7749494949494949,
+          "energy_budget": 0.54989898989899,
+          "bandwidth_mbps": 2497.9797979797977,
+          "consistency_requirement": 0.9173737373737374,
+          "decentralization_requirement": 0.5117171717171718,
+          "network_load": 0.5171717171717172,
+          "attack_risk": 0.658888888888889
+        }
+      },
+      {
+        "time_s": 63.64,
+        "predicted": "PBFT",
+        "confidence": 0.921,
+        "probabilities": {
+          "PoW": 0.018566,
+          "PoS": 0.017926,
+          "PBFT": 0.921,
+          "DPoS": 0.017957,
+          "Hybrid": 0.024552
+        },
+        "network_state": {
+          "num_nodes": 167,
+          "connectivity": 0.8909090909090909,
+          "latency_requirement_sec": 10.136363636363644,
+          "throughput_requirement_tps": 1690,
+          "byzantine_tolerance": 0.23090909090909092,
+          "security_priority": 0.7845454545454545,
+          "energy_budget": 0.5690909090909092,
+          "bandwidth_mbps": 2381.8181818181815,
+          "consistency_requirement": 0.9163636363636364,
+          "decentralization_requirement": 0.5354545454545455,
+          "network_load": 0.5045454545454545,
+          "attack_risk": 0.67
+        }
+      },
+      {
+        "time_s": 64.65,
+        "predicted": "PBFT",
+        "confidence": 0.908666,
+        "probabilities": {
+          "PoW": 0.020548,
+          "PoS": 0.019348,
+          "PBFT": 0.908666,
+          "DPoS": 0.019465,
+          "Hybrid": 0.031972
+        },
+        "network_state": {
+          "num_nodes": 202,
+          "connectivity": 0.8883838383838384,
+          "latency_requirement_sec": 12.257575757575767,
+          "throughput_requirement_tps": 1588,
+          "byzantine_tolerance": 0.23393939393939395,
+          "security_priority": 0.7941414141414141,
+          "energy_budget": 0.5882828282828284,
+          "bandwidth_mbps": 2265.6565656565654,
+          "consistency_requirement": 0.9153535353535354,
+          "decentralization_requirement": 0.5591919191919192,
+          "network_load": 0.4919191919191919,
+          "attack_risk": 0.6811111111111112
+        }
+      },
+      {
+        "time_s": 65.66,
+        "predicted": "PBFT",
+        "confidence": 0.853568,
+        "probabilities": {
+          "PoW": 0.027694,
+          "PoS": 0.024853,
+          "PBFT": 0.853568,
+          "DPoS": 0.024133,
+          "Hybrid": 0.069751
+        },
+        "network_state": {
+          "num_nodes": 237,
+          "connectivity": 0.8858585858585859,
+          "latency_requirement_sec": 14.378787878787888,
+          "throughput_requirement_tps": 1485,
+          "byzantine_tolerance": 0.236969696969697,
+          "security_priority": 0.8037373737373738,
+          "energy_budget": 0.6074747474747475,
+          "bandwidth_mbps": 2149.4949494949487,
+          "consistency_requirement": 0.9143434343434343,
+          "decentralization_requirement": 0.5829292929292931,
+          "network_load": 0.47929292929292927,
+          "attack_risk": 0.6922222222222223
+        }
+      },
+      {
+        "time_s": 66.67,
+        "predicted": "Hybrid",
+        "confidence": 0.665476,
+        "probabilities": {
+          "PoW": 0.058515,
+          "PoS": 0.035777,
+          "PBFT": 0.207513,
+          "DPoS": 0.032719,
+          "Hybrid": 0.665476
+        },
+        "network_state": {
+          "num_nodes": 273,
+          "connectivity": 0.8833333333333333,
+          "latency_requirement_sec": 16.50000000000001,
+          "throughput_requirement_tps": 1383,
+          "byzantine_tolerance": 0.24000000000000002,
+          "security_priority": 0.8133333333333334,
+          "energy_budget": 0.6266666666666667,
+          "bandwidth_mbps": 2033.3333333333326,
+          "consistency_requirement": 0.9133333333333333,
+          "decentralization_requirement": 0.6066666666666668,
+          "network_load": 0.4666666666666667,
+          "attack_risk": 0.7033333333333334
+        }
+      },
+      {
+        "time_s": 67.68,
+        "predicted": "Hybrid",
+        "confidence": 0.58725,
+        "probabilities": {
+          "PoW": 0.287226,
+          "PoS": 0.037113,
+          "PBFT": 0.045155,
+          "DPoS": 0.043256,
+          "Hybrid": 0.58725
+        },
+        "network_state": {
+          "num_nodes": 308,
+          "connectivity": 0.8808080808080808,
+          "latency_requirement_sec": 18.62121212121213,
+          "throughput_requirement_tps": 1280,
+          "byzantine_tolerance": 0.24303030303030304,
+          "security_priority": 0.822929292929293,
+          "energy_budget": 0.6458585858585859,
+          "bandwidth_mbps": 1917.1717171717166,
+          "consistency_requirement": 0.9123232323232323,
+          "decentralization_requirement": 0.6304040404040405,
+          "network_load": 0.454040404040404,
+          "attack_risk": 0.7144444444444445
+        }
+      },
+      {
+        "time_s": 68.69,
+        "predicted": "PoW",
+        "confidence": 0.872062,
+        "probabilities": {
+          "PoW": 0.872062,
+          "PoS": 0.026939,
+          "PBFT": 0.025017,
+          "DPoS": 0.029089,
+          "Hybrid": 0.046893
+        },
+        "network_state": {
+          "num_nodes": 344,
+          "connectivity": 0.8782828282828283,
+          "latency_requirement_sec": 20.742424242424253,
+          "throughput_requirement_tps": 1178,
+          "byzantine_tolerance": 0.2460606060606061,
+          "security_priority": 0.8325252525252526,
+          "energy_budget": 0.6650505050505051,
+          "bandwidth_mbps": 1801.0101010101005,
+          "consistency_requirement": 0.9113131313131313,
+          "decentralization_requirement": 0.6541414141414142,
+          "network_load": 0.44141414141414137,
+          "attack_risk": 0.7255555555555556
+        }
+      },
+      {
+        "time_s": 69.7,
+        "predicted": "PoW",
+        "confidence": 0.907812,
+        "probabilities": {
+          "PoW": 0.907812,
+          "PoS": 0.023652,
+          "PBFT": 0.021444,
+          "DPoS": 0.023682,
+          "Hybrid": 0.02341
+        },
+        "network_state": {
+          "num_nodes": 379,
+          "connectivity": 0.8757575757575757,
+          "latency_requirement_sec": 22.863636363636378,
+          "throughput_requirement_tps": 1075,
+          "byzantine_tolerance": 0.2490909090909091,
+          "security_priority": 0.8421212121212122,
+          "energy_budget": 0.6842424242424243,
+          "bandwidth_mbps": 1684.848484848484,
+          "consistency_requirement": 0.9103030303030304,
+          "decentralization_requirement": 0.677878787878788,
+          "network_load": 0.4287878787878788,
+          "attack_risk": 0.7366666666666667
+        }
+      },
+      {
+        "time_s": 70.71,
+        "predicted": "PoW",
+        "confidence": 0.913884,
+        "probabilities": {
+          "PoW": 0.913884,
+          "PoS": 0.022553,
+          "PBFT": 0.020927,
+          "DPoS": 0.022727,
+          "Hybrid": 0.019909
+        },
+        "network_state": {
+          "num_nodes": 414,
+          "connectivity": 0.8732323232323232,
+          "latency_requirement_sec": 24.9848484848485,
+          "throughput_requirement_tps": 973,
+          "byzantine_tolerance": 0.25212121212121213,
+          "security_priority": 0.8517171717171718,
+          "energy_budget": 0.7034343434343435,
+          "bandwidth_mbps": 1568.686868686868,
+          "consistency_requirement": 0.9092929292929294,
+          "decentralization_requirement": 0.7016161616161618,
+          "network_load": 0.4161616161616161,
+          "attack_risk": 0.7477777777777779
+        }
+      },
+      {
+        "time_s": 71.72,
+        "predicted": "PoW",
+        "confidence": 0.916328,
+        "probabilities": {
+          "PoW": 0.916328,
+          "PoS": 0.021811,
+          "PBFT": 0.020773,
+          "DPoS": 0.022403,
+          "Hybrid": 0.018685
+        },
+        "network_state": {
+          "num_nodes": 450,
+          "connectivity": 0.8707070707070708,
+          "latency_requirement_sec": 27.10606060606062,
+          "throughput_requirement_tps": 870,
+          "byzantine_tolerance": 0.2551515151515152,
+          "security_priority": 0.8613131313131314,
+          "energy_budget": 0.7226262626262627,
+          "bandwidth_mbps": 1452.5252525252517,
+          "consistency_requirement": 0.9082828282828284,
+          "decentralization_requirement": 0.7253535353535355,
+          "network_load": 0.4035353535353535,
+          "attack_risk": 0.758888888888889
+        }
+      },
+      {
+        "time_s": 72.73,
+        "predicted": "PoW",
+        "confidence": 0.917615,
+        "probabilities": {
+          "PoW": 0.917615,
+          "PoS": 0.021294,
+          "PBFT": 0.020703,
+          "DPoS": 0.022279,
+          "Hybrid": 0.018109
+        },
+        "network_state": {
+          "num_nodes": 485,
+          "connectivity": 0.8681818181818182,
+          "latency_requirement_sec": 29.22727272727274,
+          "throughput_requirement_tps": 768,
+          "byzantine_tolerance": 0.2581818181818182,
+          "security_priority": 0.870909090909091,
+          "energy_budget": 0.7418181818181819,
+          "bandwidth_mbps": 1336.3636363636356,
+          "consistency_requirement": 0.9072727272727273,
+          "decentralization_requirement": 0.7490909090909093,
+          "network_load": 0.3909090909090909,
+          "attack_risk": 0.77
+        }
+      },
+      {
+        "time_s": 73.74,
+        "predicted": "PoW",
+        "confidence": 0.91839,
+        "probabilities": {
+          "PoW": 0.91839,
+          "PoS": 0.020925,
+          "PBFT": 0.020655,
+          "DPoS": 0.022241,
+          "Hybrid": 0.017788
+        },
+        "network_state": {
+          "num_nodes": 520,
+          "connectivity": 0.8656565656565657,
+          "latency_requirement_sec": 31.348484848484862,
+          "throughput_requirement_tps": 665,
+          "byzantine_tolerance": 0.26121212121212123,
+          "security_priority": 0.8805050505050506,
+          "energy_budget": 0.7610101010101011,
+          "bandwidth_mbps": 1220.2020202020194,
+          "consistency_requirement": 0.9062626262626263,
+          "decentralization_requirement": 0.772828282828283,
+          "network_load": 0.3782828282828282,
+          "attack_risk": 0.7811111111111112
+        }
+      },
+      {
+        "time_s": 74.75,
+        "predicted": "PoW",
+        "confidence": 0.918893,
+        "probabilities": {
+          "PoW": 0.918893,
+          "PoS": 0.020663,
+          "PBFT": 0.020613,
+          "DPoS": 0.022244,
+          "Hybrid": 0.017587
+        },
+        "network_state": {
+          "num_nodes": 556,
+          "connectivity": 0.8631313131313132,
+          "latency_requirement_sec": 33.46969696969698,
+          "throughput_requirement_tps": 563,
+          "byzantine_tolerance": 0.2642424242424243,
+          "security_priority": 0.8901010101010102,
+          "energy_budget": 0.7802020202020203,
+          "bandwidth_mbps": 1104.0404040404032,
+          "consistency_requirement": 0.9052525252525253,
+          "decentralization_requirement": 0.7965656565656567,
+          "network_load": 0.3656565656565656,
+          "attack_risk": 0.7922222222222223
+        }
+      },
+      {
+        "time_s": 75.76,
+        "predicted": "PoW",
+        "confidence": 0.919243,
+        "probabilities": {
+          "PoW": 0.919243,
+          "PoS": 0.020478,
+          "PBFT": 0.020574,
+          "DPoS": 0.02226,
+          "Hybrid": 0.017445
+        },
+        "network_state": {
+          "num_nodes": 591,
+          "connectivity": 0.8606060606060606,
+          "latency_requirement_sec": 35.59090909090911,
+          "throughput_requirement_tps": 460,
+          "byzantine_tolerance": 0.2672727272727273,
+          "security_priority": 0.8996969696969698,
+          "energy_budget": 0.7993939393939395,
+          "bandwidth_mbps": 987.8787878787869,
+          "consistency_requirement": 0.9042424242424243,
+          "decentralization_requirement": 0.8203030303030305,
+          "network_load": 0.35303030303030297,
+          "attack_risk": 0.8033333333333335
+        }
+      },
+      {
+        "time_s": 76.77,
+        "predicted": "PoW",
+        "confidence": 0.919503,
+        "probabilities": {
+          "PoW": 0.919503,
+          "PoS": 0.020351,
+          "PBFT": 0.020535,
+          "DPoS": 0.022276,
+          "Hybrid": 0.017335
+        },
+        "network_state": {
+          "num_nodes": 626,
+          "connectivity": 0.8580808080808081,
+          "latency_requirement_sec": 37.71212121212123,
+          "throughput_requirement_tps": 358,
+          "byzantine_tolerance": 0.2703030303030303,
+          "security_priority": 0.9092929292929294,
+          "energy_budget": 0.8185858585858587,
+          "bandwidth_mbps": 871.7171717171707,
+          "consistency_requirement": 0.9032323232323233,
+          "decentralization_requirement": 0.8440404040404041,
+          "network_load": 0.3404040404040404,
+          "attack_risk": 0.8144444444444445
+        }
+      },
+      {
+        "time_s": 77.78,
+        "predicted": "PoW",
+        "confidence": 0.91971,
+        "probabilities": {
+          "PoW": 0.91971,
+          "PoS": 0.020268,
+          "PBFT": 0.020492,
+          "DPoS": 0.022289,
+          "Hybrid": 0.017241
+        },
+        "network_state": {
+          "num_nodes": 662,
+          "connectivity": 0.8555555555555555,
+          "latency_requirement_sec": 39.83333333333335,
+          "throughput_requirement_tps": 255,
+          "byzantine_tolerance": 0.2733333333333334,
+          "security_priority": 0.918888888888889,
+          "energy_budget": 0.837777777777778,
+          "bandwidth_mbps": 755.5555555555547,
+          "consistency_requirement": 0.9022222222222223,
+          "decentralization_requirement": 0.867777777777778,
+          "network_load": 0.3277777777777777,
+          "attack_risk": 0.8255555555555556
+        }
+      },
+      {
+        "time_s": 78.79,
+        "predicted": "PoW",
+        "confidence": 0.919878,
+        "probabilities": {
+          "PoW": 0.919878,
+          "PoS": 0.020222,
+          "PBFT": 0.020447,
+          "DPoS": 0.022295,
+          "Hybrid": 0.017159
+        },
+        "network_state": {
+          "num_nodes": 697,
+          "connectivity": 0.853030303030303,
+          "latency_requirement_sec": 41.95454545454547,
+          "throughput_requirement_tps": 153,
+          "byzantine_tolerance": 0.27636363636363637,
+          "security_priority": 0.9284848484848486,
+          "energy_budget": 0.8569696969696972,
+          "bandwidth_mbps": 639.3939393939386,
+          "consistency_requirement": 0.9012121212121212,
+          "decentralization_requirement": 0.8915151515151517,
+          "network_load": 0.31515151515151507,
+          "attack_risk": 0.8366666666666668
+        }
+      },
+      {
+        "time_s": 79.8,
+        "predicted": "PoW",
+        "confidence": 0.920018,
+        "probabilities": {
+          "PoW": 0.920018,
+          "PoS": 0.020206,
+          "PBFT": 0.020398,
+          "DPoS": 0.022295,
+          "Hybrid": 0.017083
+        },
+        "network_state": {
+          "num_nodes": 732,
+          "connectivity": 0.8505050505050505,
+          "latency_requirement_sec": 44.07575757575759,
+          "throughput_requirement_tps": 50,
+          "byzantine_tolerance": 0.2793939393939394,
+          "security_priority": 0.9380808080808082,
+          "energy_budget": 0.8761616161616164,
+          "bandwidth_mbps": 523.2323232323224,
+          "consistency_requirement": 0.9002020202020202,
+          "decentralization_requirement": 0.9152525252525254,
+          "network_load": 0.3025252525252525,
+          "attack_risk": 0.8477777777777779
+        }
+      },
+      {
+        "time_s": 80.81,
+        "predicted": "PoW",
+        "confidence": 0.919651,
+        "probabilities": {
+          "PoW": 0.919651,
+          "PoS": 0.020255,
+          "PBFT": 0.020377,
+          "DPoS": 0.022429,
+          "Hybrid": 0.017288
+        },
+        "network_state": {
+          "num_nodes": 726,
+          "connectivity": 0.8447474747474747,
+          "latency_requirement_sec": 43.00505050505049,
+          "throughput_requirement_tps": 341,
+          "byzantine_tolerance": 0.27353535353535346,
+          "security_priority": 0.931111111111111,
+          "energy_budget": 0.8565656565656563,
+          "bandwidth_mbps": 702.0202020202042,
+          "consistency_requirement": 0.8898989898989899,
+          "decentralization_requirement": 0.9078787878787878,
+          "network_load": 0.3161616161616163,
+          "attack_risk": 0.8318181818181816
+        }
+      },
+      {
+        "time_s": 81.82,
+        "predicted": "PoW",
+        "confidence": 0.919021,
+        "probabilities": {
+          "PoW": 0.919021,
+          "PoS": 0.020408,
+          "PBFT": 0.020352,
+          "DPoS": 0.022604,
+          "Hybrid": 0.017615
+        },
+        "network_state": {
+          "num_nodes": 709,
+          "connectivity": 0.8381818181818181,
+          "latency_requirement_sec": 41.13636363636362,
+          "throughput_requirement_tps": 730,
+          "byzantine_tolerance": 0.2654545454545454,
+          "security_priority": 0.9199999999999998,
+          "energy_budget": 0.827272727272727,
+          "bandwidth_mbps": 954.5454545454568,
+          "consistency_requirement": 0.8772727272727272,
+          "decentralization_requirement": 0.8927272727272726,
+          "network_load": 0.33636363636363653,
+          "attack_risk": 0.8090909090909089
+        }
+      },
+      {
+        "time_s": 82.83,
+        "predicted": "PoW",
+        "confidence": 0.918144,
+        "probabilities": {
+          "PoW": 0.918144,
+          "PoS": 0.020684,
+          "PBFT": 0.020318,
+          "DPoS": 0.022811,
+          "Hybrid": 0.018044
+        },
+        "network_state": {
+          "num_nodes": 691,
+          "connectivity": 0.8316161616161615,
+          "latency_requirement_sec": 39.26767676767675,
+          "throughput_requirement_tps": 1118,
+          "byzantine_tolerance": 0.2573737373737373,
+          "security_priority": 0.9088888888888887,
+          "energy_budget": 0.7979797979797977,
+          "bandwidth_mbps": 1207.0707070707094,
+          "consistency_requirement": 0.8646464646464646,
+          "decentralization_requirement": 0.8775757575757575,
+          "network_load": 0.35656565656565675,
+          "attack_risk": 0.7863636363636362
+        }
+      },
+      {
+        "time_s": 83.84,
+        "predicted": "PoW",
+        "confidence": 0.916785,
+        "probabilities": {
+          "PoW": 0.916785,
+          "PoS": 0.021124,
+          "PBFT": 0.020286,
+          "DPoS": 0.023128,
+          "Hybrid": 0.018677
+        },
+        "network_state": {
+          "num_nodes": 674,
+          "connectivity": 0.8250505050505049,
+          "latency_requirement_sec": 37.39898989898988,
+          "throughput_requirement_tps": 1507,
+          "byzantine_tolerance": 0.24929292929292923,
+          "security_priority": 0.8977777777777776,
+          "energy_budget": 0.7686868686868684,
+          "bandwidth_mbps": 1459.595959595962,
+          "consistency_requirement": 0.8520202020202019,
+          "decentralization_requirement": 0.8624242424242423,
+          "network_load": 0.376767676767677,
+          "attack_risk": 0.7636363636363634
+        }
+      },
+      {
+        "time_s": 84.85,
+        "predicted": "PoW",
+        "confidence": 0.914378,
+        "probabilities": {
+          "PoW": 0.914378,
+          "PoS": 0.021819,
+          "PBFT": 0.020279,
+          "DPoS": 0.023759,
+          "Hybrid": 0.019765
+        },
+        "network_state": {
+          "num_nodes": 657,
+          "connectivity": 0.8184848484848484,
+          "latency_requirement_sec": 35.53030303030301,
+          "throughput_requirement_tps": 1896,
+          "byzantine_tolerance": 0.24121212121212116,
+          "security_priority": 0.8866666666666665,
+          "energy_budget": 0.739393939393939,
+          "bandwidth_mbps": 1712.1212121212147,
+          "consistency_requirement": 0.8393939393939392,
+          "decentralization_requirement": 0.8472727272727272,
+          "network_load": 0.3969696969696972,
+          "attack_risk": 0.7409090909090906
+        }
+      },
+      {
+        "time_s": 85.86,
+        "predicted": "PoW",
+        "confidence": 0.909202,
+        "probabilities": {
+          "PoW": 0.909202,
+          "PoS": 0.023011,
+          "PBFT": 0.020404,
+          "DPoS": 0.025347,
+          "Hybrid": 0.022036
+        },
+        "network_state": {
+          "num_nodes": 640,
+          "connectivity": 0.8119191919191918,
+          "latency_requirement_sec": 33.661616161616145,
+          "throughput_requirement_tps": 2285,
+          "byzantine_tolerance": 0.23313131313131308,
+          "security_priority": 0.8755555555555554,
+          "energy_budget": 0.7101010101010098,
+          "bandwidth_mbps": 1964.6464646464672,
+          "consistency_requirement": 0.8267676767676767,
+          "decentralization_requirement": 0.832121212121212,
+          "network_load": 0.41717171717171736,
+          "attack_risk": 0.7181818181818179
+        }
+      },
+      {
+        "time_s": 86.87,
+        "predicted": "PoW",
+        "confidence": 0.893369,
+        "probabilities": {
+          "PoW": 0.893369,
+          "PoS": 0.02569,
+          "PBFT": 0.021283,
+          "DPoS": 0.030935,
+          "Hybrid": 0.028723
+        },
+        "network_state": {
+          "num_nodes": 623,
+          "connectivity": 0.8053535353535353,
+          "latency_requirement_sec": 31.792929292929273,
+          "throughput_requirement_tps": 2674,
+          "byzantine_tolerance": 0.225050505050505,
+          "security_priority": 0.8644444444444442,
+          "energy_budget": 0.6808080808080805,
+          "bandwidth_mbps": 2217.17171717172,
+          "consistency_requirement": 0.814141414141414,
+          "decentralization_requirement": 0.8169696969696969,
+          "network_load": 0.4373737373737376,
+          "attack_risk": 0.6954545454545452
+        }
+      },
+      {
+        "time_s": 87.88,
+        "predicted": "PoW",
+        "confidence": 0.792726,
+        "probabilities": {
+          "PoW": 0.792726,
+          "PoS": 0.037958,
+          "PBFT": 0.028391,
+          "DPoS": 0.075082,
+          "Hybrid": 0.065843
+        },
+        "network_state": {
+          "num_nodes": 606,
+          "connectivity": 0.7987878787878787,
+          "latency_requirement_sec": 29.924242424242404,
+          "throughput_requirement_tps": 3063,
+          "byzantine_tolerance": 0.21696969696969692,
+          "security_priority": 0.8533333333333332,
+          "energy_budget": 0.6515151515151512,
+          "bandwidth_mbps": 2469.6969696969727,
+          "consistency_requirement": 0.8015151515151514,
+          "decentralization_requirement": 0.8018181818181818,
+          "network_load": 0.4575757575757578,
+          "attack_risk": 0.6727272727272724
+        }
+      },
+      {
+        "time_s": 88.89,
+        "predicted": "DPoS",
+        "confidence": 0.555993,
+        "probabilities": {
+          "PoW": 0.225069,
+          "PoS": 0.053705,
+          "PBFT": 0.039736,
+          "DPoS": 0.555993,
+          "Hybrid": 0.125496
+        },
+        "network_state": {
+          "num_nodes": 588,
+          "connectivity": 0.7922222222222222,
+          "latency_requirement_sec": 28.055555555555536,
+          "throughput_requirement_tps": 3452,
+          "byzantine_tolerance": 0.20888888888888885,
+          "security_priority": 0.8422222222222221,
+          "energy_budget": 0.622222222222222,
+          "bandwidth_mbps": 2722.222222222225,
+          "consistency_requirement": 0.7888888888888888,
+          "decentralization_requirement": 0.7866666666666665,
+          "network_load": 0.47777777777777797,
+          "attack_risk": 0.6499999999999997
+        }
+      },
+      {
+        "time_s": 89.9,
+        "predicted": "DPoS",
+        "confidence": 0.854722,
+        "probabilities": {
+          "PoW": 0.043383,
+          "PoS": 0.029166,
+          "PBFT": 0.025011,
+          "DPoS": 0.854722,
+          "Hybrid": 0.047719
+        },
+        "network_state": {
+          "num_nodes": 571,
+          "connectivity": 0.7856565656565655,
+          "latency_requirement_sec": 26.186868686868664,
+          "throughput_requirement_tps": 3841,
+          "byzantine_tolerance": 0.20080808080808074,
+          "security_priority": 0.8311111111111109,
+          "energy_budget": 0.5929292929292926,
+          "bandwidth_mbps": 2974.7474747474776,
+          "consistency_requirement": 0.7762626262626261,
+          "decentralization_requirement": 0.7715151515151514,
+          "network_load": 0.4979797979797982,
+          "attack_risk": 0.627272727272727
+        }
+      },
+      {
+        "time_s": 90.91,
+        "predicted": "DPoS",
+        "confidence": 0.902086,
+        "probabilities": {
+          "PoW": 0.024691,
+          "PoS": 0.02253,
+          "PBFT": 0.020897,
+          "DPoS": 0.902086,
+          "Hybrid": 0.029796
+        },
+        "network_state": {
+          "num_nodes": 554,
+          "connectivity": 0.779090909090909,
+          "latency_requirement_sec": 24.318181818181795,
+          "throughput_requirement_tps": 4230,
+          "byzantine_tolerance": 0.19272727272727264,
+          "security_priority": 0.8199999999999998,
+          "energy_budget": 0.5636363636363633,
+          "bandwidth_mbps": 3227.27272727273,
+          "consistency_requirement": 0.7636363636363634,
+          "decentralization_requirement": 0.7563636363636362,
+          "network_load": 0.5181818181818184,
+          "attack_risk": 0.6045454545454543
+        }
+      },
+      {
+        "time_s": 91.92,
+        "predicted": "DPoS",
+        "confidence": 0.915424,
+        "probabilities": {
+          "PoW": 0.020116,
+          "PoS": 0.020416,
+          "PBFT": 0.019682,
+          "DPoS": 0.915424,
+          "Hybrid": 0.024363
+        },
+        "network_state": {
+          "num_nodes": 537,
+          "connectivity": 0.7725252525252524,
+          "latency_requirement_sec": 22.449494949494927,
+          "throughput_requirement_tps": 4618,
+          "byzantine_tolerance": 0.18464646464646456,
+          "security_priority": 0.8088888888888887,
+          "energy_budget": 0.534343434343434,
+          "bandwidth_mbps": 3479.797979797983,
+          "consistency_requirement": 0.7510101010101009,
+          "decentralization_requirement": 0.7412121212121211,
+          "network_load": 0.5383838383838386,
+          "attack_risk": 0.5818181818181816
+        }
+      },
+      {
+        "time_s": 92.93,
+        "predicted": "DPoS",
+        "confidence": 0.920938,
+        "probabilities": {
+          "PoW": 0.018336,
+          "PoS": 0.019507,
+          "PBFT": 0.019232,
+          "DPoS": 0.920938,
+          "Hybrid": 0.021986
+        },
+        "network_state": {
+          "num_nodes": 520,
+          "connectivity": 0.7659595959595958,
+          "latency_requirement_sec": 20.58080808080806,
+          "throughput_requirement_tps": 5007,
+          "byzantine_tolerance": 0.17656565656565648,
+          "security_priority": 0.7977777777777776,
+          "energy_budget": 0.5050505050505047,
+          "bandwidth_mbps": 3732.3232323232355,
+          "consistency_requirement": 0.7383838383838383,
+          "decentralization_requirement": 0.726060606060606,
+          "network_load": 0.5585858585858589,
+          "attack_risk": 0.5590909090909089
+        }
+      },
+      {
+        "time_s": 93.94,
+        "predicted": "DPoS",
+        "confidence": 0.923798,
+        "probabilities": {
+          "PoW": 0.017433,
+          "PoS": 0.019028,
+          "PBFT": 0.019045,
+          "DPoS": 0.923798,
+          "Hybrid": 0.020696
+        },
+        "network_state": {
+          "num_nodes": 503,
+          "connectivity": 0.7593939393939393,
+          "latency_requirement_sec": 18.71212121212119,
+          "throughput_requirement_tps": 5396,
+          "byzantine_tolerance": 0.1684848484848484,
+          "security_priority": 0.7866666666666665,
+          "energy_budget": 0.47575757575757543,
+          "bandwidth_mbps": 3984.8484848484877,
+          "consistency_requirement": 0.7257575757575756,
+          "decentralization_requirement": 0.7109090909090907,
+          "network_load": 0.5787878787878791,
+          "attack_risk": 0.536363636363636
+        }
+      },
+      {
+        "time_s": 94.95,
+        "predicted": "DPoS",
+        "confidence": 0.925548,
+        "probabilities": {
+          "PoW": 0.016875,
+          "PoS": 0.018729,
+          "PBFT": 0.018961,
+          "DPoS": 0.925548,
+          "Hybrid": 0.019887
+        },
+        "network_state": {
+          "num_nodes": 485,
+          "connectivity": 0.7528282828282827,
+          "latency_requirement_sec": 16.84343434343432,
+          "throughput_requirement_tps": 5785,
+          "byzantine_tolerance": 0.16040404040404033,
+          "security_priority": 0.7755555555555553,
+          "energy_budget": 0.4464646464646462,
+          "bandwidth_mbps": 4237.37373737374,
+          "consistency_requirement": 0.7131313131313131,
+          "decentralization_requirement": 0.6957575757575756,
+          "network_load": 0.5989898989898992,
+          "attack_risk": 0.5136363636363633
+        }
+      },
+      {
+        "time_s": 95.96,
+        "predicted": "DPoS",
+        "confidence": 0.926748,
+        "probabilities": {
+          "PoW": 0.016483,
+          "PoS": 0.018521,
+          "PBFT": 0.018927,
+          "DPoS": 0.926748,
+          "Hybrid": 0.019321
+        },
+        "network_state": {
+          "num_nodes": 468,
+          "connectivity": 0.7462626262626262,
+          "latency_requirement_sec": 14.97474747474745,
+          "throughput_requirement_tps": 6174,
+          "byzantine_tolerance": 0.15232323232323225,
+          "security_priority": 0.7644444444444443,
+          "energy_budget": 0.4171717171717168,
+          "bandwidth_mbps": 4489.898989898993,
+          "consistency_requirement": 0.7005050505050503,
+          "decentralization_requirement": 0.6806060606060604,
+          "network_load": 0.6191919191919195,
+          "attack_risk": 0.4909090909090906
+        }
+      },
+      {
+        "time_s": 96.97,
+        "predicted": "DPoS",
+        "confidence": 0.927647,
+        "probabilities": {
+          "PoW": 0.016177,
+          "PoS": 0.018362,
+          "PBFT": 0.01892,
+          "DPoS": 0.927647,
+          "Hybrid": 0.018895
+        },
+        "network_state": {
+          "num_nodes": 451,
+          "connectivity": 0.7396969696969697,
+          "latency_requirement_sec": 13.106060606060609,
+          "throughput_requirement_tps": 6563,
+          "byzantine_tolerance": 0.14424242424242428,
+          "security_priority": 0.7533333333333333,
+          "energy_budget": 0.387878787878788,
+          "bandwidth_mbps": 4742.424242424242,
+          "consistency_requirement": 0.687878787878788,
+          "decentralization_requirement": 0.6654545454545455,
+          "network_load": 0.6393939393939394,
+          "attack_risk": 0.4681818181818182
+        }
+      },
+      {
+        "time_s": 97.98,
+        "predicted": "DPoS",
+        "confidence": 0.928362,
+        "probabilities": {
+          "PoW": 0.015922,
+          "PoS": 0.018232,
+          "PBFT": 0.018927,
+          "DPoS": 0.928362,
+          "Hybrid": 0.018556
+        },
+        "network_state": {
+          "num_nodes": 434,
+          "connectivity": 0.7331313131313131,
+          "latency_requirement_sec": 11.237373737373737,
+          "throughput_requirement_tps": 6952,
+          "byzantine_tolerance": 0.13616161616161618,
+          "security_priority": 0.7422222222222221,
+          "energy_budget": 0.35858585858585856,
+          "bandwidth_mbps": 4994.949494949495,
+          "consistency_requirement": 0.6752525252525252,
+          "decentralization_requirement": 0.6503030303030304,
+          "network_load": 0.6595959595959596,
+          "attack_risk": 0.44545454545454544
+        }
+      },
+      {
+        "time_s": 98.99,
+        "predicted": "DPoS",
+        "confidence": 0.928955,
+        "probabilities": {
+          "PoW": 0.015701,
+          "PoS": 0.018123,
+          "PBFT": 0.018944,
+          "DPoS": 0.928955,
+          "Hybrid": 0.018277
+        },
+        "network_state": {
+          "num_nodes": 417,
+          "connectivity": 0.7265656565656565,
+          "latency_requirement_sec": 9.368686868686865,
+          "throughput_requirement_tps": 7341,
+          "byzantine_tolerance": 0.1280808080808081,
+          "security_priority": 0.731111111111111,
+          "energy_budget": 0.3292929292929293,
+          "bandwidth_mbps": 5247.474747474747,
+          "consistency_requirement": 0.6626262626262627,
+          "decentralization_requirement": 0.6351515151515152,
+          "network_load": 0.6797979797979798,
+          "attack_risk": 0.4227272727272727
+        }
+      },
+      {
+        "time_s": 100.0,
+        "predicted": "DPoS",
+        "confidence": 0.929462,
+        "probabilities": {
+          "PoW": 0.015503,
+          "PoS": 0.018027,
+          "PBFT": 0.018969,
+          "DPoS": 0.929462,
+          "Hybrid": 0.01804
+        },
+        "network_state": {
+          "num_nodes": 400,
+          "connectivity": 0.72,
+          "latency_requirement_sec": 7.5,
+          "throughput_requirement_tps": 7730,
+          "byzantine_tolerance": 0.12000000000000002,
+          "security_priority": 0.72,
+          "energy_budget": 0.30000000000000004,
+          "bandwidth_mbps": 5500.0,
+          "consistency_requirement": 0.65,
+          "decentralization_requirement": 0.6200000000000001,
+          "network_load": 0.7,
+          "attack_risk": 0.39999999999999997
+        }
+      }
+    ],
+    "phase_summary": [
+      {
+        "name": "Phase 1: Hybrid (Normal)",
+        "time_range": "0-20s",
+        "dominant_consensus": "Hybrid",
+        "dominance_ratio": 1.0,
+        "distribution": {
+          "Hybrid": 20
+        }
+      },
+      {
+        "name": "Phase 2: PoS (Low Energy)",
+        "time_range": "20-40s",
+        "dominant_consensus": "Hybrid",
+        "dominance_ratio": 0.55,
+        "distribution": {
+          "Hybrid": 11,
+          "PoS": 9
+        }
+      },
+      {
+        "name": "Phase 3: PBFT (Small Net)",
+        "time_range": "40-60s",
+        "dominant_consensus": "PBFT",
+        "dominance_ratio": 0.45,
+        "distribution": {
+          "PoS": 7,
+          "Hybrid": 4,
+          "PBFT": 9
+        }
+      },
+      {
+        "name": "Phase 4: PoW (Attack)",
+        "time_range": "60-80s",
+        "dominant_consensus": "PoW",
+        "dominance_ratio": 0.6,
+        "distribution": {
+          "PBFT": 6,
+          "Hybrid": 2,
+          "PoW": 12
+        }
+      },
+      {
+        "name": "Phase 5: DPoS (Scale-up)",
+        "time_range": "80-100s",
+        "dominant_consensus": "DPoS",
+        "dominance_ratio": 0.5789,
+        "distribution": {
+          "PoW": 8,
+          "DPoS": 11
+        }
+      }
+    ]
+  }
+}
